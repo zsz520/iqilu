@@ -361,6 +361,10 @@ https://iqilu-kohl.vercel.app/api/iqilu?orgid=295&num=0
 https://iqilu-kohl.vercel.app/api/iqilu?orgid=305&num=0
 #EXTINF:-1 tvg-logo="https://img11.iqilu.com/305/2021/05/07/b2777021f2fa88dc90500d50b23b6b2d.png",胶州生活
 https://iqilu-kohl.vercel.app/api/iqilu?orgid=305&num=1
+#EXTINF:-1 tvg-logo="",包头新闻
+https://iqilu-kohl.vercel.app/api/iqilu?orgid=423&num=0
+#EXTINF:-1 tvg-logo="",包头生活服务
+https://iqilu-kohl.vercel.app/api/iqilu?orgid=423&num=1
 #EXTINF:-1 tvg-logo="",新闻综合频道
 https://iqilu-kohl.vercel.app/api/iqilu?orgid=39&num=0
 #EXTINF:-1 tvg-logo="",生活服务频道

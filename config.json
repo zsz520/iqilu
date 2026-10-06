@@ -169,9 +169,9 @@
     "635:3": "潍坊科教文化"
   },
   "_comment_order": "顺序规则：官方表（data/channel_names.csv）里有的按表行序排在前，没有的一律沉底（未收录段 = 新扫到待确认的台，按 orgId/index 排）。维护方式＝直接改官方表。",
-  "_comment_dedupe": "★ 只合并「流地址相同 且 上游 id 也相同」的；id 不同一律保留（可能存在不同 id 共用一路流，贸然合并会丢台）。",
+  "_comment_dedupe": "去重开关。enabled=false 时不合并任何条目（同流多条全部保留）。守则：只合并「流地址相同 且 上游 id 也相同」的，id 不同一律保留。",
   "dedupe": {
-    "enabled": true,
+    "enabled": false,
     "preferLongerName": true,
     "keepOrgId": [
       305,
