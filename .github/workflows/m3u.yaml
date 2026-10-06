@@ -25,6 +25,10 @@ jobs:
 
       - name: Run scripts
         run: |
+          # 权威表 channel_names.csv → config.json 的 nameOverrides。
+          # 必须在 filter-metadata 之前跑：后者直接读 config.json 里已生成的
+          # nameOverrides 来改名，不读 CSV。缺了这一步，网页端改表不会生效。
+          node actions/gen-name-overrides.js
           node actions/filter-metadata.js
           node actions/gen-m3u-generic.js
           node actions/gen-txt-ku9.js

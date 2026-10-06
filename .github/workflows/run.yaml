@@ -25,6 +25,8 @@ jobs:
         run: |
           node actions/fetch-metadata.js
           node actions/merge-metadata.js
+          # 权威表 → nameOverrides，必须在 filter-metadata 之前
+          node actions/gen-name-overrides.js
           node actions/filter-metadata.js
           node actions/gen-m3u-generic.js
           node actions/gen-txt-ku9.js
