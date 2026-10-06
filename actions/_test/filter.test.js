@@ -14,7 +14,8 @@ function check(name, fn) {
 }
 
 // 构造最小样本，不依赖真实 data/
-const item = (o) => ({ orgId: 1, index: 0, name: '', desc: '', stream: 'https://x/y.m3u8', ...o });
+// stream 用真实长度的地址，避免被「有效性」规则（第 0 条）误伤
+const item = (o) => ({ orgId: 1, index: 0, name: '', desc: '', stream: 'https://alivealone302.litenews.cn/1/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/playlist.m3u8', ...o });
 
 const baseConfig = {
   blacklistNames: [],
@@ -22,6 +23,21 @@ const baseConfig = {
   blacklistNameRegex: [],
   excludeNamePatterns: [],
 };
+
+console.log('\n=== 0. 流地址有效性（新增）===');
+{
+  const cfg = { ...baseConfig };
+  check('正常地址 → 留',
+    () => assert.strictEqual(shouldKeep(item({ name: 'A' }), cfg), true));
+  check('★ 空串 → 删', () => assert.strictEqual(shouldKeep(item({ name: 'A', stream: '' }), cfg), false));
+  check('★ "https://" 残缺值 → 删（orgId=657 实况）',
+    () => assert.strictEqual(shouldKeep(item({ name: 'A', stream: 'https://' }), cfg), false));
+  check('★ stream 字段缺失 → 删', () => assert.strictEqual(shouldKeep({ orgId: 1, index: 0, name: 'A' }, cfg), false));
+  check('过短地址 → 删', () => assert.strictEqual(shouldKeep(item({ name: 'A', stream: 'https://x/y.m3u8' }), cfg), false));
+  check('http（非 https）也保留', () => assert.strictEqual(shouldKeep(item({ name: 'A', stream: 'http://qkqxzb.qingk.cn/live/llsjtv01/index.m3u8' }), cfg), true));
+  check('可用 dropInvalidStream:false 关闭该规则',
+    () => assert.strictEqual(shouldKeep({ orgId: 1, index: 0, name: 'A', stream: '' }, { ...baseConfig, dropInvalidStream: false }), true));
+}
 
 console.log('\n=== 1. blacklistNames（name + desc 都查，保持原行为）===');
 {

@@ -8,7 +8,8 @@
 /**
  * 判断一条频道是否应被保留。
  *
- * 依次应用 config.json 里的三类规则：
+ * 依次应用 config.json 里的规则：
+ *   0. 有效性          —— 流地址为空/残缺 → 屏蔽（这类条目播放必然失败）
  *   1. blacklistNames      —— 频道名/描述 包含任一关键词 → 屏蔽
  *   2. blacklistOrgIds     —— orgId 在列表内 → 屏蔽
  *   3. blacklistNameRegex  —— 频道名匹配任一正则 → 屏蔽
@@ -26,6 +27,16 @@ function shouldKeep(item, config) {
   const blacklistOrgIds = config.blacklistOrgIds || [];
   const blacklistNameRegex = config.blacklistNameRegex || [];
   const excludeNamePatterns = config.excludeNamePatterns || [];
+
+  // 0. 有效性：流地址必须是一条像样的 http(s) 地址。
+  //    上游偶尔返回空串、"https://" 这种残缺值（例：orgId=657 idx=1）。
+  //    这类条目留在列表里只会让用户点了播不出来，直接丢弃。
+  if (config.dropInvalidStream !== false) {
+    const s = String(item.stream || '').trim();
+    // 至少要 有协议 + 有主机 + 有路径特征
+    const ok = /^https?:\/\/[^\s/]+/.test(s) && s.length >= 25;
+    if (!ok) return false;
+  }
 
   // 1. 关键词黑名单：name 和 desc 都查（保持原有行为）
   if (blacklistNames.some(key => name.includes(key) || desc.includes(key))) return false;

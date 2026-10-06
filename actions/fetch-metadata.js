@@ -16,12 +16,22 @@ async function fetchOrgId(orgId) {
           try {
             const json = JSON.parse(data);
             if (json.data && Array.isArray(json.data)) {
-              const validStreams = json.data
-                .filter((item) => item.stream && item.stream.startsWith("http"))
-                .map((item, i) => {
-                  item.stream = item.stream.replace(/\s/g, "");
-                  return { orgId, index: i, ...item };
-                });
+              // ★ 关键：index 必须记录「上游原始数组下标」，不能用 filter 之后的下标。
+              //
+              // 为什么：酷9 / Vercel 的取址脚本会拿 num 去请求同一个上游接口，
+              // 取的正是 json.data[num] —— 也就是未过滤数组里的位置。
+              // 之前这里先 filter 再 map 取 i，一旦上游存在 stream 为空/非 http 的项，
+              // index 就会整体前移、与上游真实下标错位，导致 num 取到隔壁频道。
+              //
+              // 所以：先带原始下标遍历，再过滤。下标用 rawIndex 保留。
+              const all = json.data.map((item, rawIndex) => {
+                const stream = String(item.stream || '').replace(/\s/g, '');
+                // ...item 先展开，再用 stream 覆盖干净后的值
+                return { ...item, orgId, index: rawIndex, stream };
+              });
+              const validStreams = all.filter(
+                (item) => item.stream && item.stream.startsWith('http')
+              );
               resolve(validStreams);
             } else {
               resolve([]);
