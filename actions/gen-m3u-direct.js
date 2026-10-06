@@ -1,19 +1,14 @@
 const fs = require('fs');
 const path = require("path");
-const { filterChannels } = require("./lib/filter");
 
-const configPath = path.join(__dirname, '../', `config.json`);
-const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-
-const dataPath = path.join(__dirname, '../data', `streams_all.json`);
+// 读过滤后的成品数据。过滤动作已由 filter-metadata.js 统一完成，
+// 这里不再需要知道过滤规则。
+const dataPath = path.join(__dirname, '../data', `streams_filtered.json`);
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-
-// 过滤规则统一在 actions/lib/filter.js，三个生成器共用一份，避免规则漂移。
-const filtered = filterChannels(data, config);
 
 let m3u = '#EXTM3U\n';
 
-filtered.forEach(item => {
+data.forEach(item => {
   const logo = item.icon || (item.share && item.share.image) || '';
   const apiUrl = item.stream;
   m3u += `#EXTINF:-1 tvg-logo="${logo}",${item.name}\n`;
@@ -21,4 +16,4 @@ filtered.forEach(item => {
 });
 
 fs.writeFileSync('iqilu-direct.m3u', m3u, 'utf-8');
-console.log('Filtered M3U generated: iqilu-direct.m3u');
+console.log(`M3U generated: iqilu-direct.m3u (${data.length} channels)`);

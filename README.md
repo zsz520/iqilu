@@ -41,7 +41,23 @@
 
 ## 频道过滤规则
 
-所有过滤规则集中在 `config.json`，逻辑实现在 `actions/lib/filter.js`（三个生成器共用一份）。
+所有过滤规则集中在 `config.json`，逻辑实现在 `actions/lib/filter.js`。
+
+### 过滤在什么时候发生
+
+**过滤是一个独立的流水线步骤**，由 `actions/filter-metadata.js` 执行，产出成品 JSON：
+
+```
+fetch-metadata  →  data/streams_1-100.json …
+merge-metadata  →  data/streams_all.json        ← 原始，含全部频道，未过滤
+filter-metadata →  data/streams_filtered.json   ← 成品，已过滤
+                        ↓
+        gen-m3u-generic / gen-txt-ku9 / gen-m3u-direct   ← 只读成品，不碰规则
+```
+
+**下游（生成器、Cloudflare Worker）都不需要知道过滤规则**，只读 `streams_filtered.json`。
+所以改规则只需改一处，不会出现"某个产物忘了同步"的情况。
+
 规则**按顺序**生效，命中任一即屏蔽：
 
 | 字段 | 说明 | 匹配字段 |
@@ -50,6 +66,17 @@
 | `blacklistOrgIds` | 机构 ID 黑名单 | `orgId` |
 | `blacklistNameRegex` | 正则黑名单 | **仅 `name`** |
 | `excludeNamePatterns` | 先匹配再豁免（见下） | **仅 `name`** |
+
+> ⚠️ **`blacklistOrgIds` 是按「机构」整包屏蔽，一个 orgId 常含多个频道。**
+> 当前配置为 `[21, 29]`，其中 **orgId 21 包含 9 个频道**
+> （山东卫视 / 新闻频道 / 齐鲁频道 / 体育休闲频道 / 生活频道 / 综艺频道 / 文旅频道 / 农科频道 / 少儿频道），
+> orgId 29 为空。
+>
+> 改这个字段前，先确认该 orgId 下到底有哪些频道：
+> ```bash
+> node -e "const d=require('./data/streams_all.json'); \
+>   [21,29].forEach(id=>console.log(id, d.filter(x=>x.orgId===id).map(x=>x.name)))"
+> ```
 
 ### `excludeNamePatterns`：先匹配再豁免
 

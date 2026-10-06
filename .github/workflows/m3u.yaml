@@ -25,6 +25,7 @@ jobs:
 
       - name: Run scripts
         run: |
+          node actions/filter-metadata.js
           node actions/gen-m3u-generic.js
           node actions/gen-txt-ku9.js
           node actions/gen-m3u-direct.js

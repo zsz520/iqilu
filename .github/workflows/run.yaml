@@ -25,6 +25,7 @@ jobs:
         run: |
           node actions/fetch-metadata.js
           node actions/merge-metadata.js
+          node actions/filter-metadata.js
           node actions/gen-m3u-generic.js
           node actions/gen-txt-ku9.js
       - name: Set Git author
