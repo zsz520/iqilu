@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require("path");
+const { filterChannels } = require("./lib/filter");
 
 const configPath = path.join(__dirname, '../', `config.json`);
 const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 
 const baseUrl = config.baseUrl_ku9.replace(/\/$/, '');
-const blacklistNames = config.blacklistNames || [];
-const blacklistOrgIds = config.blacklistOrgIds || [];
 
 // 列表名称：酷9 的「TXT 只有一个分组时，分组名必须和列表名称一致」才认配置。
 // 可用环境变量 KU9_LIST_NAME 覆盖，默认沿用原文件名语义。
@@ -15,13 +14,8 @@ const listName = process.env.KU9_LIST_NAME || 'iqilu-ku9';
 const dataPath = path.join(__dirname, '../data', `streams_all.json`);
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
-const filtered = data.filter(item => {
-  const name = item.name || '';
-  const desc = item.desc || '';
-  const nameOk = !blacklistNames.some(key => name.includes(key) || desc.includes(key));
-  const idOk = !blacklistOrgIds.includes(item.orgId);
-  return nameOk && idOk;
-});
+// 过滤规则统一在 actions/lib/filter.js，三个生成器共用一份，避免规则漂移。
+const filtered = filterChannels(data, config);
 
 const apiUrlOf = (item) => `${baseUrl}?orgid=${item.orgId}&num=${item.index}`;
 

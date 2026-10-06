@@ -72,8 +72,6 @@ ZDTV-2,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu
 新闻综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=111&num=0
 兰陵综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=113&num=0
 兰陵公共,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=113&num=1
-听广播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=113&num=3
-FM100.1,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=113&num=5
 诸城新闻综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=115&num=0
 诸城生活娱乐,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=115&num=1
 党风政风监督热线,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=115&num=2
@@ -112,7 +110,6 @@ LZTV-2生活服务频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqil
 单县新闻综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=155&num=1
 莒县综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=159&num=0
 莒县生活,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=159&num=1
-FM97-Live,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=159&num=2
 蒙阴综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=161&num=0
 蒙阴TV—2,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=161&num=1
 新闻综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=163&num=0
@@ -124,7 +121,6 @@ FM97-Live,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iq
 慢直播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=167&num=2
 无棣综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=169&num=0
 无棣综艺频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=169&num=1
-无棣广播直播回放,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=169&num=2
 长岛电视台,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=175&num=0
 沂南综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=177&num=0
 沂南红色影视,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=177&num=1
@@ -136,7 +132,6 @@ FM97-Live,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iq
 河东综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=191&num=0
 河东影视频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=191&num=1
 宁津融媒体中心综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=193&num=0
-宁津县融媒体中心综合广播视频直播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=193&num=1
 章丘综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=195&num=0
 章丘TV-2,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=195&num=1
 滨海新闻综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=199&num=0
@@ -155,7 +150,6 @@ FM97-Live,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iq
 牡丹电视台—综艺,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=219&num=1
 即墨融媒【综合频道】,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=221&num=0
 即墨融媒【生活服务频道】,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=221&num=1
-即墨融媒【综合广播】,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=221&num=2
 路口直播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=221&num=3
 夏津电视台综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=223&num=0
 夏津电视台公共频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=223&num=1
@@ -163,11 +157,9 @@ FM97-Live,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iq
 少儿频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=225&num=1
 综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=227&num=0
 生活频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=227&num=1
-FM926视频直播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=227&num=2
 市中电视台,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=233&num=0
 新闻综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=241&num=0
 民生综艺,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=241&num=1
-综合广播,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=241&num=2
 综合频道,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=243&num=0
 莱山综合,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=245&num=0
 莱山影视,https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js?orgid=245&num=1

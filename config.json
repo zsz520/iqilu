@@ -1,6 +1,18 @@
 {
   "baseUrl_ku9": "https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js/",
   "baseUrl_generic": "https://iqilu-kohl.vercel.app/",
+
+  "_comment": "过滤规则见 actions/lib/filter.js。四类规则按顺序生效。",
+
   "blacklistNames": ["CCTV", "中央一套", "金山防盗链", "测试", "看个球吧"],
-  "blacklistOrgIds": [21, 29]
+
+  "blacklistOrgIds": [21, 29],
+
+  "_comment_blacklistNameRegex": "频道名匹配任一正则即屏蔽（只查 name，不查 desc，避免描述长文本误伤）",
+  "blacklistNameRegex": [],
+
+  "_comment_excludeNamePatterns": "先匹配再豁免：命中 match 且【不】命中 unless → 屏蔽。用于屏蔽广播电台、但保留『XX广播电视台』这类电视频道。",
+  "excludeNamePatterns": [
+    { "match": "FM|广播", "unless": "广播电视台" }
+  ]
 }

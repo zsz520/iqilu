@@ -1,22 +1,15 @@
 const fs = require('fs');
 const path = require("path");
+const { filterChannels } = require("./lib/filter");
 
 const configPath = path.join(__dirname, '../', `config.json`);
 const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 
-const blacklistNames = config.blacklistNames || [];
-const blacklistOrgIds = config.blacklistOrgIds || [];
-
 const dataPath = path.join(__dirname, '../data', `streams_all.json`);
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
-const filtered = data.filter(item => {
-  const name = item.name || '';
-  const desc = item.desc || '';
-  const nameOk = !blacklistNames.some(key => name.includes(key) || desc.includes(key));
-  const idOk = !blacklistOrgIds.includes(item.orgId);
-  return nameOk && idOk;
-});
+// 过滤规则统一在 actions/lib/filter.js，三个生成器共用一份，避免规则漂移。
+const filtered = filterChannels(data, config);
 
 let m3u = '#EXTM3U\n';
 
