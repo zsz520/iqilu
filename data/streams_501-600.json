@@ -1,1 +1,59 @@
-[]
+[
+  {
+    "orgId": 537,
+    "index": 0,
+    "name": "新闻综合",
+    "icon": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+    "logo": "https://img11.litenews.cn/537/2025/09/22/1cc35a10c39141969abeaa0a4a748d2b.png",
+    "stream": "https://alivealone302.litenews.cn/537/202304_1651887564107485184/playlist.m3u8?k=578cdec750587a13200103768504e81f&t=1791253891",
+    "desc": "新闻综合频道",
+    "id": 1,
+    "state": 1,
+    "cateid": 0,
+    "program": 1,
+    "share": {
+      "title": "新闻综合",
+      "image": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+      "url": "https://ady.dongyingnews.cn/share/dHZsLTUzNy0x.html",
+      "desc": "点击观看精彩节目"
+    }
+  },
+  {
+    "orgId": 537,
+    "index": 1,
+    "name": "公共频道",
+    "icon": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+    "logo": "https://img11.litenews.cn/537/2025/09/22/71f4e38ba08f47ec8b04a15439db5b96.png",
+    "stream": "https://alivealone302.litenews.cn/537/202304_1651887564182982656/playlist.m3u8?k=416914e175246e83b10cda162ff589c0&t=1791253891",
+    "desc": "公共频道",
+    "id": 3,
+    "state": 1,
+    "cateid": 0,
+    "program": 1,
+    "share": {
+      "title": "公共频道",
+      "image": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+      "url": "https://ady.dongyingnews.cn/share/dHZsLTUzNy0z.html",
+      "desc": "点击观看精彩节目"
+    }
+  },
+  {
+    "orgId": 537,
+    "index": 2,
+    "name": "科教频道",
+    "icon": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+    "logo": "https://img11.litenews.cn/537/2025/09/22/4fcb1cf8edc84b9e90a75903f2961747.png",
+    "stream": "https://alivealone302.litenews.cn/537/202305_1654684492679512064/playlist.m3u8?k=4ef7fefa5673be0fcaf2fad670aca30c&t=1791253891",
+    "desc": "东营科教频道",
+    "id": 7,
+    "state": 1,
+    "cateid": 0,
+    "program": 1,
+    "share": {
+      "title": "科教频道",
+      "image": "https://img11.litenews.cn/537/2023/05/03/f582654a7005568a9ad9bbbe823a1022.png",
+      "url": "https://ady.dongyingnews.cn/share/dHZsLTUzNy03.html",
+      "desc": "点击观看精彩节目"
+    }
+  }
+]
