@@ -42,23 +42,30 @@ console.log(`权威表：${rows.length} 条（${new Set(rows.map(r => r.city)).s
 
 // ---- 2. 读本地数据，建 (orgId,id) 索引 ----
 const all = JSON.parse(fs.readFileSync(allPath, 'utf-8'));
-const byKey = new Map();
+
+// 权威表用的是上游 id，而全项目统一用 index 定位 → 这里做一次 id → index 的换算。
+// 建立 orgId 下的 id → index 索引。
+const idToIndex = new Map();   // "orgId:id" → index
+const byIndex = new Map();     // "orgId:index" → item
 for (const item of all) {
-  if (item.id !== undefined) byKey.set(`${item.orgId}:${item.id}`, item);
+  if (item.id !== undefined) idToIndex.set(`${item.orgId}:${item.id}`, item.index);
+  byIndex.set(`${item.orgId}:${item.index}`, item);
 }
 
 // ---- 3. 推导覆盖 ----
 const overrides = {};
 let missing = 0, same = 0;
 for (const r of rows) {
-  const key = `${r.orgId}:${r.id}`;
-  const local = byKey.get(key);
-  if (!local) { missing++; continue; }        // 本地没有这个频道，跳过
+  const idx = idToIndex.get(`${r.orgId}:${r.id}`);
+  if (idx === undefined) { missing++; continue; }  // 本地没有这个频道，跳过
+  const key = `${r.orgId}:${idx}`;
+  const local = byIndex.get(key);
+  if (!local) { missing++; continue; }
   if (local.name === r.name) { same++; continue; } // 名字已正确，不必覆盖
   overrides[key] = r.name;
 }
 
-// 按 orgId、id 数值排序，便于人工 diff
+// 按 orgId、index 数值排序，便于人工 diff
 const sorted = {};
 Object.keys(overrides)
   .sort((a, b) => {
@@ -73,7 +80,7 @@ console.log(`覆盖映射：${Object.keys(sorted).length} 条  (名字已对：$
 if (dry) {
   console.log('\n--dry 模式，未写入。前 10 条预览：');
   Object.entries(sorted).slice(0, 10).forEach(([k, v]) =>
-    console.log(`  ${k} → ${v}  (当前「${byKey.get(k).name}」)`));
+    console.log(`  ${k} → ${v}  (当前「${byIndex.get(k).name}」)`));
   process.exit(0);
 }
 

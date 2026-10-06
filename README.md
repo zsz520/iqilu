@@ -126,20 +126,24 @@ filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+
 
 | 缺陷 | 实例 |
 |---|---|
-| **张冠李戴** | `orgId=225 id=1` 名为「山东卫视」，实际流是夏津（`xiajin_tv02`） |
+| **张冠李戴** | `orgId=225 index=0` 名为「山东卫视」，实际流是夏津（`xiajin_tv02`） |
 | **缺地域前缀** | 全站 13 个频道都叫「综合频道」，用户分不清是黄岛、金乡还是成武 |
 
-**键格式：`"orgId:id"`**
+**键格式：`"orgId:index"`**
 
-> ★ **必须用 `id`，不能用 `index`。**
-> `id` 是上游接口返回的真实频道编号，稳定不变；
-> `index` 只是本次返回数组里的位置，会随上下架漂移。
+> ★ **全项目统一用 `index` 定位。**
+> `index` 是上游返回数组里的位置，也正是酷9 / Vercel 取址脚本的 `num` 参数。
+> 用它当键，`config.json`、`streams_filtered.json`、Ku9 TXT 的 `num` 三处口径完全一致，
+> 不会出现两套编号互相打架。
+>
+> 注：上游记录里还有个 `id` 字段（业务编号），**本项目不使用它做定位**，
+> 仅在 `channel_names.csv` 里作为权威表的原始列，由生成脚本换算成 index。
 
 ```json
 "nameOverrides": {
-  "537:1": "东营新闻综合",
-  "227:1": "黄岛综合",
-  "129:2": "金乡综合"
+  "537:0": "东营新闻综合",
+  "227:0": "黄岛综合",
+  "129:0": "金乡综合"
 }
 ```
 
@@ -158,6 +162,9 @@ filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+
 node actions/gen-name-overrides.js --dry   # 预览将产生多少条覆盖
 node actions/gen-name-overrides.js         # 写回 config.json
 ```
+
+脚本内部会把权威表的 `id` 列**换算成 index**（在 `streams_all.json` 里按 `orgId+id`
+找到对应条目，取其 `index` 作为键）。
 
 当前 223 条权威记录 → 产出 140 条覆盖（41 条名字本就正确，42 条本地缺失未收录）。
 
@@ -223,7 +230,7 @@ https://xxx.100ycdn.com/alivealone302.litenews.cn/635/1ebcf529.../playlist.m3u8
 
 ```bash
 node actions/_test/filter.test.js      # 32 项：五类筛选规则 + 边界
-node actions/_test/transform.test.js   # 26 项：流归一化 + 改名 + 去重 + 端到端
+node actions/_test/transform.test.js   # 28 项：流归一化 + 改名 + 去重 + 端到端
 ```
 
 ---
@@ -249,6 +256,10 @@ const valid = all.filter(item => item.stream.startsWith('http'));
 
 > 经核对，当前 121 个 orgId 的 `index` 均为从 0 开始的连续序列，
 > 说明现有线上数据未踩到该坑；此修复为**防御性加固**。
+>
+> ★ **本项目全链路统一以 `index` 作为定位基准**（配置键、去重、生成器的 `num`）。
+> 上游记录里的 `id` 字段（业务编号）不作定位使用 —— 两者在 181 条可比对记录中
+> 有 33 条指向不同条目，混用必然出错。**只用一套编号，就不会有对齐问题。**
 
 ### 坑 2：上游会返回残缺流地址
 

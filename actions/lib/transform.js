@@ -42,12 +42,20 @@ function streamKey(item) {
 }
 
 /**
+ * 覆盖表的键 —— 统一用 index。
+ *
+ * ★ 全项目统一口径：凡是「定位某条频道」的地方，都用 orgId + index。
+ *   index = 上游返回数组里的位置，也正是酷9 / Vercel 取址脚本的 num 参数。
+ *   这样 config、数据、脚本三处的定位方式完全一致，不再有 id / index 两套编号互相打架。
+ */
+function overrideKey(item) {
+  return `${item.orgId}:${item.index}`;
+}
+
+/**
  * 按 config.nameOverrides 改名。
  *
- * 键格式 "orgId:id"（注意是上游真实字段 id，不是数组下标 index！）
- *   - 上游接口每条记录都带 id，它才是与后台频道号一致的稳定编号；
- *     index 只是本次返回数组里的位置，会随上下架漂移。
- *   - 若记录没有 id 字段，则回退用 index，兼容旧数据。
+ * 键格式 "orgId:index"，与 dedupe、生成器、取址脚本的 num 参数保持同一套编号。
  *
  * @param {Array}  data
  * @param {object} config
@@ -58,7 +66,7 @@ function applyNameOverrides(data, config) {
   const renamed = [];
 
   const channels = data.map(item => {
-    const key = `${item.orgId}:${item.id !== undefined ? item.id : item.index}`;
+    const key = overrideKey(item);
     const to = overrides[key];
     if (to === undefined || to === item.name) return item;
     // 不改动原对象，保持上游原始数据可追溯
@@ -112,7 +120,7 @@ function dedupeByStream(data, config) {
    */
   function score(item) {
     let s = 0;
-    const key = `${item.orgId}:${item.id !== undefined ? item.id : item.index}`;
+    const key = overrideKey(item);
     if (overrides[key] !== undefined) s += 10000;
     const path = String(item.stream || '');
     for (const oid of keepOrgIds) {
