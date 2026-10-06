@@ -26,7 +26,7 @@ jobs:
           node actions/fetch-metadata.js
           node actions/merge-metadata.js
           node actions/gen-m3u-generic.js
-          node actions/gen-m3u-ku9.js
+          node actions/gen-txt-ku9.js
       - name: Set Git author
         run: |
           git config user.name 'github-actions[bot]'
