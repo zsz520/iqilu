@@ -1,5 +1,6 @@
 {
-  "baseUrl_ku9": "https://fastly.jsdelivr.net/k-web/ku9/js/gh/zsz520/iqilu@master/ku9/iqilu.js/",
+  "_comment_baseUrl_ku9": "酷9 远程 JS 的脚本地址前缀，生成器会在后面拼 ?orgid=X&num=Y。★ 注意别用 k-web：酷9 的 k-web 规则会「只取末段文件名、丢掉中间路径」，用在 jsDelivr 的仓库路径上会退化成 fastly.jsdelivr.net/iqilu.js（不存在）。直接用标准 gh 路径。",
+  "baseUrl_ku9": "https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js",
   "baseUrl_generic": "https://iqilu-kohl.vercel.app/",
 
   "_comment": "过滤规则见 actions/lib/filter.js。四类规则按顺序生效。",
