@@ -78,10 +78,13 @@ function applyNameOverrides(data, config) {
 }
 
 /**
- * 按流地址去重：同一路流只保留一条。
+ * 按流地址去重 —— 但**只把「流地址相同 且 上游 id 也相同」的视为真重复**。
  *
- * 上游存在「同一个台建了多个 orgId」的问题（例：39/689、115/635、305/423），
- * 表现为不同频道名指向完全相同的流地址，播放器里就是重复项。
+ * ★ 为什么加 id 这一重条件：
+ *   上游把「同一个台建多个 orgId」的镜像组塞进来时，流地址会完全相同；
+ *   但也存在「不同 id 共用一路流」的情况（如 115/635 的潍坊系列、537/657 的东营组）。
+ *   后者其实是上游数据不同步 —— id 不同就意味着上游认为它们是两个频道，
+ *   **贸然合并会丢台**。所以只合并 id 也一致的（即真正的同一条记录被重复返回）。
  *
  * 保留策略（config.dedupe || {}）：
  *   keepOrgId   —— 这些流目录优先保留。值是「流地址里出现的 orgId 目录段」数组，
@@ -101,10 +104,14 @@ function dedupeByStream(data, config) {
   const preferLongerName = cfg.preferLongerName !== false;
   const overrides = config.nameOverrides || {};
 
+  // ★ 去重键 = 流地址指纹 + 上游 id。
+  //   两个都相同才算同一条；id 不同一律保留。
+  const dedupeKey = (item) => `${streamKey(item)}#${item.id}`;
+
   // 先记录每组的大小，只有 >1 的才需要挑
   const groups = new Map();
   data.forEach(item => {
-    const k = streamKey(item);
+    const k = dedupeKey(item);
     if (!groups.has(k)) groups.set(k, []);
     groups.get(k).push(item);
   });
@@ -140,13 +147,51 @@ function dedupeByStream(data, config) {
     const sorted = members.slice().sort((a, b) => score(b) - score(a));
     kept.push(sorted[0]);
     for (const m of sorted.slice(1)) {
-      dropped.push({ orgId: m.orgId, index: m.index, name: m.name, key: streamKey(m), keptAs: sorted[0].name });
+      dropped.push({ orgId: m.orgId, index: m.index, id: m.id, name: m.name, key: streamKey(m), keptAs: sorted[0].name });
     }
   }
 
-  // 恢复原始相对顺序（按 orgId、index），避免去重打乱列表
-  kept.sort((a, b) => (a.orgId - b.orgId) || (a.index - b.index));
+  // 排序交给 orderByAuthority（官方表序 + 未收录沉底），这里不再自定义排序
   return { channels: kept, dropped };
 }
 
-module.exports = { streamKey, applyNameOverrides, dedupeByStream };
+/**
+ * 按「官方权威表」的顺序重排列表。
+ *
+ * 用户维护方式是「直接改官方表」——官方表里自上而下的行序就是期望的列表顺序。
+ * 因此排序规则：
+ *   1. 官方表里有的频道 → 严格按官方表的行号排（表序 = 展示序）
+ *   2. 官方表里没有的频道（不管是否重复、是否新扫到）→ 一律排到最后，
+ *      内部保持稳定的 <orgId, index> 序，便于一眼看出「新增了哪些台」
+ *
+ * 这样列表顺序完全由官方表控制，新增台会自动沉到末尾等人确认。
+ *
+ * @param {Array}  data        频道数组
+ * @param {Array}  authorityRows  官方表行数组，顺序即权威顺序（元素含 orgId / index）
+ * @returns {Array} 新数组（不修改入参）
+ */
+function orderByAuthority(data, authorityRows) {
+  // "orgId:index" → 官方表行号（越小越靠前）
+  const rank = new Map();
+  (authorityRows || []).forEach((r, i) => {
+    const key = `${r.orgId}:${r.index}`;
+    if (!rank.has(key)) rank.set(key, i);   // 同一键重复出现时取首次
+  });
+
+  const UNRANKED = Number.MAX_SAFE_INTEGER;  // 官方表没有 → 沉底
+
+  return data.slice().sort((a, b) => {
+    const ra = rank.has(overrideKey(a)) ? rank.get(overrideKey(a)) : UNRANKED;
+    const rb = rank.has(overrideKey(b)) ? rank.get(overrideKey(b)) : UNRANKED;
+    // 第一优先：官方表有 → 无
+    if (ra !== rb) {
+      if (ra === UNRANKED) return 1;   // a 无官方 → 排后
+      if (rb === UNRANKED) return -1;  // b 无官方 → 排后
+      return ra - rb;                  // 两者都有 → 按官方行序
+    }
+    // 第二优先（都无官方）：稳定按 orgId、index
+    return (a.orgId - b.orgId) || (a.index - b.index);
+  });
+}
+
+module.exports = { streamKey, applyNameOverrides, dedupeByStream, orderByAuthority };

@@ -44,7 +44,7 @@
 所有规则集中在 `config.json`，逻辑实现分两个模块：
 
 - `actions/lib/filter.js` —— **筛选**（留不留）
-- `actions/lib/transform.js` —— **变换**（改名、去重），返回新数组而非布尔值
+- `actions/lib/transform.js` —— **变换**（改名、去重、按官方表排序），返回新数组而非布尔值
 
 ### 处理在什么时候发生
 
@@ -53,7 +53,7 @@
 ```
 fetch-metadata  →  data/streams_1-100.json …
 merge-metadata  →  data/streams_all.json        ← 原始，含全部频道，未过滤
-filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+去重
+filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+去重+排序
                         ↓
         gen-m3u-generic / gen-txt-ku9 / gen-m3u-direct   ← 只读成品，不碰规则
 ```
@@ -61,13 +61,33 @@ filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+
 **下游（生成器、Cloudflare Worker）都不需要知道规则**，只读 `streams_filtered.json`。
 所以改规则只需改一处，不会出现"某个产物忘了同步"的情况。
 
-处理**按顺序**执行三步：
+处理**按顺序**执行四步：
 
 | 步骤 | 做什么 | 配置字段 | 实现 |
 |---|---|---|---|
 | 1. 筛选 | 决定某条留不留 | `blacklistNames` / `blacklistOrgIds` / `blacklistNameRegex` / `excludeNamePatterns` / `dropInvalidStream` | `filter.js` |
 | 2. 改名 | 修正名字 | `nameOverrides` | `transform.js` |
-| 3. 去重 | 同流只留一条 | `dedupe` | `transform.js` |
+| 3. 去重 | 同流**且同 id** 才合并 | `dedupe` | `transform.js` |
+| 4. 排序 | 官方表序在前、未收录沉底 | （读 `data/channel_names.csv`） | `transform.js` |
+
+### 列表顺序 = 官方表的顺序 ★
+
+**排序完全由 `data/channel_names.csv` 的行序决定**，这是给用户的维护入口：
+
+| 情况 | 排在哪 |
+|---|---|
+| 官方表里有这条 | **按官方表的行序**（表序 = 展示序） |
+| 官方表里没有（扫到了但未收录，**无论是否重复**） | **一律沉底**，内部按 `orgId` / `index` |
+
+因此维护方式很简单：**只改官方表**，产物顺序自动跟着变。
+**列表末尾那一段就是天然的「新增待确认」清单** —— 上游新上了什么台一眼可见，
+确认属实后再把它补进官方表，下次生成它自动归位。
+
+> 当前产物 211 条 = **官方表段 181 条 + 未收录段 30 条**。
+> 日志里会打印 `Ordered 官方表 N 条在前 / 未收录 M 条沉底` 便于核对。
+
+> ⚠️ 未收录的**不额外分组** —— 酷9 的 TXT 有「只有一个分组时，分组名须与列表名一致」
+> 的契约，多插 `#genre#` 分组有风险。**排在末尾本身就是最好的标识。**
 
 ---
 
@@ -136,8 +156,8 @@ filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+
 > 用它当键，`config.json`、`streams_filtered.json`、Ku9 TXT 的 `num` 三处口径完全一致，
 > 不会出现两套编号互相打架。
 >
-> 注：上游记录里还有个 `id` 字段（业务编号），**本项目不使用它做定位**，
-> 仅在 `channel_names.csv` 里作为权威表的原始列，由生成脚本换算成 index。
+> 注：上游记录里还有个 `id` 字段（业务编号），**本项目不使用它做定位**。
+> 权威表 `channel_names.csv` 的第 2 列也已统一改为 `index`，全项目只剩一套编号。
 
 ```json
 "nameOverrides": {
@@ -150,10 +170,10 @@ filter-metadata →  data/streams_filtered.json   ← 成品，已筛选+改名+
 名字来源是 **`data/channel_names.csv`**（官方频道清单，223 条，覆盖 16 地市）：
 
 ```
-# 格式: orgId,id,地市,规范名
-223,1,德州,夏津综合
-223,2,德州,夏津公共
-227,1,青岛,黄岛综合
+# 格式: orgId,index,地市,规范名
+223,0,德州,夏津综合
+223,1,德州,夏津公共
+227,0,青岛,黄岛综合
 ```
 
 **更新方式**（权威表变了就重跑）：
@@ -163,8 +183,16 @@ node actions/gen-name-overrides.js --dry   # 预览将产生多少条覆盖
 node actions/gen-name-overrides.js         # 写回 config.json
 ```
 
-脚本内部会把权威表的 `id` 列**换算成 index**（在 `streams_all.json` 里按 `orgId+id`
-找到对应条目，取其 `index` 作为键）。
+> 权威表第 2 列的口径就是 `index`，生成脚本不做任何换算，直接拿 `orgId:index` 当键。
+> 如果你的权威表还是上游 `id` 口径，先跑一次换算：
+>
+> ```bash
+> node actions/csv-id-to-index.js          # 干跑，看能换算多少行
+> node actions/csv-id-to-index.js --write  # 落盘
+> ```
+>
+> 换算依赖 `streams_all.json` 里已存在的 `orgId+id`；**本地没有的频道换算不出来**，
+> 会保留原值并列出来，需要人工确认。
 
 当前 223 条权威记录 → 产出 140 条覆盖（41 条名字本就正确，42 条本地缺失未收录）。
 
@@ -172,14 +200,17 @@ node actions/gen-name-overrides.js         # 写回 config.json
 
 ### 3. 去重规则 `dedupe`
 
-上游存在**「同一个台建了多个 orgId」**的重复建组问题，表现为不同频道名指向完全相同的流地址。
-共发现 5 组，例如：
+**★ 去重键 = 流地址指纹 + 上游 `id`，两个都相同才算重复。**
 
-| 重复的流 | 涉及条目 |
-|---|---|
-| `.../689/bb172d92...` | orgId=39/idx0「新闻综合频道」、orgId=689/idx0「新闻综合频道」、orgId=39/idx3「有节目的测试」 |
-| `.../305/c663c037...` | orgId=305/idx1「生活频道」、orgId=423/idx0「综合频道」、orgId=423/idx2「娱乐频道」 |
-| `.../537/202304_...` | orgId=537/idx1「公共频道」、orgId=657/idx0「新闻综合频道」（换了个域名） |
+上游「流地址相同」有两种完全不同的成因，**必须区别对待**：
+
+| 成因 | 例子 | 处理 |
+|---|---|---|
+| 同一条记录被重复返回（真·重复） | 305/423 的胶州组 | **合并** |
+| 上游不同步：**不同 `id` 共用一路流** | 115/635 的潍坊系列、537/657 的东营组 | **不合并** —— 合并会丢台 |
+
+所以只要 `id` 不一样就全部保留。这是**刻意保守**的取舍：
+宁可在列表里多留一条让人工判断，也不要静默丢掉一个台。
 
 ```json
 "dedupe": {
@@ -189,6 +220,8 @@ node actions/gen-name-overrides.js         # 写回 config.json
 }
 ```
 
+> 实测效果：放宽前 8 组被判重、放宽后只剩 **2 组**（`423:0`、`423:1`）。
+
 **保留优先级**（打分从高到低）：
 
 1. **在 `nameOverrides` 里有命中的** —— 名字经过权威核对，优先于未核对条目
@@ -196,6 +229,9 @@ node actions/gen-name-overrides.js         # 写回 config.json
 3. 条目 `orgId` 自身在 `keepOrgId` 里
 4. 名字更长
 5. `index` 更小（同分时取先出现的，保证稳定）
+
+> 去重函数**不负责排序**（排序是第 4 步 `orderByAuthority` 的事），
+> 否则它会覆盖掉官方表的顺序。
 
 **流地址归一化**（`streamKey`）——去重能生效的关键：
 
@@ -235,7 +271,7 @@ node actions/_test/transform.test.js   # 28 项：流归一化 + 改名 + 去重
 
 ---
 
-## 上游接口的两个坑（改代码前必读）
+## 上游接口的三个坑（改代码前必读）
 
 ### 坑 1：`index` 必须记录上游原始数组下标
 
@@ -265,3 +301,28 @@ const valid = all.filter(item => item.stream.startsWith('http'));
 
 `orgId=657 idx=1「民生频道」` 的 `stream` 是 `"https://"`（空地址）。
 这类条目留在列表里只会让用户点了播不出来，由 `dropInvalidStream` 在筛选阶段丢弃。
+
+### 坑 3：**直播源路径里没有 `id`**，别想着从 URL 反推
+
+核对频道名时最容易走的弯路，就是以为「看一眼流地址就知道上游 `id` 是多少」。
+实测 248 条记录，**路径里不携带业务编号 `id`**。路径只有五类形状：
+
+| 形状 | 样例 | 路径里的数字是什么 |
+|---|---|---|
+| `/orgId/32位hex/playlist.m3u8` | `alivealone302.litenews.cn/1/e6630b8d…885c/playlist.m3u8` | 首段是 **orgId**；第二段是 **16 字节随机流哈希**，与 `id` 无关 |
+| `/orgId/日期_ID/playlist.m3u8` | `…/47/202304_1651887490384203776/playlist.m3u8` | 日期 + **雪花 ID**（流的时间戳主键），不是频道 `id` |
+| `/b{orgId}/…` | `blivealone302.litenews.cn/b49/4a67ae84…/index.m3u8` | `b` + **orgId** |
+| `/live/{拼音}/index.m3u8` | `jsylivealone302.iqilu.com/live/xiajin_tv02/index.m3u8` | **台名拼音**（唯一语义线索，见下） |
+| 其他 | 裸 IP、`tv.cctv.com/live/cctv1/` | 无 |
+
+**别把第二段当 base64。** 32 位 hex 段是 MD5 风格的随机哈希，按 base64 解出来是乱码
+（`e6630b8d…` → `"{....w...uo.Z.^{..."`）；40 字符段同理。和解密、和 `id` 都没有关系。
+
+> 唯一能当证据用的是什么？**`/live/{拼音}/`**。
+> 例如 `orgId=225 idx=0` 挂名「山东卫视」，但流是 `/live/xiajin_tv02/` —— 夏津的拼音，
+> 直接坐实了错挂（夏津的正规组是 `orgId=223`）。
+> 反例：`/live/llsjtv01/`（兰陵）与 `orgId=113` 的兰陵综合相符，无异常。
+
+**想拿 `id`，只能读接口 JSON 字段**，不能从流地址推。另外注意
+`orgId` 路径段与记录自身的 `orgId` 也可能不一致：`orgId=21` 的 9 条里有 7 条流路径是
+`/291/…` —— 那是流的归属方编号。**路径段只能当线索，不能当权威。**

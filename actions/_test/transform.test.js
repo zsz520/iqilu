@@ -1,13 +1,14 @@
 /**
- * 改名 + 去重的离线测试（无第三方依赖，直接 node 跑）
+ * 改名 + 去重 + 排序的离线测试（无第三方依赖，直接 node 跑）
  *
  * 覆盖 actions/lib/transform.js：
  *   - streamKey 的归一化（去 query、剥 CDN 域名、老架构 live/ 形式）
- *   - applyNameOverrides 用 id（而非 index）匹配覆盖表
- *   - dedupeByStream 的保留策略（权威优先 > keepOrgId > 名字长度）
+ *   - applyNameOverrides 用 index（统一口径）匹配覆盖表
+ *   - dedupeByStream 只合并「流相同 且 id 也相同」的；id 不同一律保留
+ *   - orderByAuthority：官方表序在前、未收录沉底
  */
 const assert = require('assert');
-const { streamKey, applyNameOverrides, dedupeByStream } = require('../lib/transform');
+const { streamKey, applyNameOverrides, dedupeByStream, orderByAuthority } = require('../lib/transform');
 
 let pass = 0, fail = 0;
 function check(name, fn) {
@@ -118,13 +119,13 @@ console.log('\n=== 2. applyNameOverrides（统一用 index 定位）===');
     () => assert.doesNotThrow(() => applyNameOverrides([item({})], {})));
 }
 
-console.log('\n=== 3. dedupeByStream ===');
+console.log('\n=== 3. dedupeByStream（★ 只合并「流相同 且 id 也相同」的）===');
 {
   const mk = (orgId, index, id, name, path) => item({ orgId, index, id, name, stream: S(path) });
 
-  check('同一路流只留一条', () => {
+  check('★ 流相同 + id 相同 → 判为重复，只留一条', () => {
     const data = [
-      mk(39, 0, 10, '新闻综合频道', '689/bb17/playlist.m3u8'),
+      mk(39, 0, 11, '新闻综合频道', '689/bb17/playlist.m3u8'),
       mk(689, 0, 11, '新闻综合频道', '689/bb17/playlist.m3u8'),
     ];
     const { channels, dropped } = dedupeByStream(data, { dedupe: { keepOrgId: [689] } });
@@ -133,21 +134,31 @@ console.log('\n=== 3. dedupeByStream ===');
     assert.strictEqual(dropped.length, 1);
   });
 
+  check('★★ 流相同但 id 不同 → 不判重复，两条都留（放宽规则的核心）', () => {
+    const data = [
+      mk(115, 3, 71, '潍坊新闻综合', '635/695b/playlist.m3u8'),
+      mk(635, 0, 1, '新闻综合', '635/695b/playlist.m3u8'),
+    ];
+    const { channels, dropped } = dedupeByStream(data, { dedupe: { keepOrgId: [635] } });
+    assert.strictEqual(channels.length, 2, 'id 不同必须都保留');
+    assert.strictEqual(dropped.length, 0);
+  });
+
   check('★ 有权威命名覆盖的条目优先保留', () => {
     const data = [
       mk(537, 1, 3, '公共频道', '537/hashA/playlist.m3u8'),
-      mk(657, 0, 1, '新闻综合频道', '537/hashA/playlist.m3u8'),
+      mk(657, 0, 3, '新闻综合频道', '537/hashA/playlist.m3u8'),
     ];
-    // 537:1（index=1）在覆盖表里 → 应保留 537
+    // 两条 id 都是 3 → 算重复；537:1 在覆盖表里 → 保留 537
     const { channels } = dedupeByStream(data, { nameOverrides: { '537:1': '东营公共' }, dedupe: {} });
+    assert.strictEqual(channels.length, 1);
     assert.strictEqual(channels[0].orgId, 537);
-    assert.strictEqual(channels[0].name, '公共频道');
   });
 
-  check('★ CDN 中转域名也能识别为重复', () => {
+  check('★ CDN 中转域名 + 同 id → 仍能识别为重复', () => {
     const data = [
       mk(635, 2, 7, '潍坊影视综艺', '635/1ebc/playlist.m3u8'),
-      item({ orgId: 115, index: 5, id: 181, name: '潍坊影视综艺',
+      item({ orgId: 635, index: 9, id: 7, name: '潍坊影视综艺',
         stream: 'https://xxx.100ycdn.com/alivealone302.litenews.cn/635/1ebc/playlist.m3u8' }),
     ];
     const { channels } = dedupeByStream(data, { dedupe: { keepOrgId: [635] } });
@@ -174,14 +185,15 @@ console.log('\n=== 3. dedupeByStream ===');
     assert.strictEqual(channels.length, 2);
   });
 
-  check('★ 去重后恢复原始顺序（按 orgId,index）', () => {
+  check('★ 去重不再自定义排序（顺序交给 orderByAuthority）', () => {
     const data = [
       mk(9, 3, 1, 'C', '9/h3/playlist.m3u8'),
       mk(2, 0, 1, 'A', '2/h1/playlist.m3u8'),
       mk(5, 1, 1, 'B', '5/h2/playlist.m3u8'),
     ];
     const { channels } = dedupeByStream(data, { dedupe: {} });
-    assert.deepStrictEqual(channels.map(x => x.orgId), [2, 5, 9]);
+    // 保持输入相对顺序，不再按 orgId 重排
+    assert.deepStrictEqual(channels.map(x => x.orgId), [9, 2, 5]);
   });
 
   check('dropped 记录保留去向', () => {
@@ -198,11 +210,47 @@ console.log('\n=== 3. dedupeByStream ===');
   check('dedupe 配置缺失不炸', () => assert.strictEqual(dedupeByStream([mk(1, 0, 1, 'A', '1/h/playlist.m3u8')], {}).channels.length, 1));
 }
 
-console.log('\n=== 4. 端到端：改名 + 去重串联 ===');
+console.log('\n=== 4. orderByAuthority（官方表序在前、未收录沉底）===');
 {
-  // 模拟真实场景：225 组错挂 + 39/689 重复
+  const mk = (orgId, index, name) => item({ orgId, index, name });
+
+  check('官方表有的按表序排', () => {
+    const data = [mk(9, 0, '九'), mk(2, 0, '二'), mk(5, 0, '五')];
+    const auth = [{ orgId: 2, index: 0 }, { orgId: 5, index: 0 }, { orgId: 9, index: 0 }];
+    const out = orderByAuthority(data, auth);
+    assert.deepStrictEqual(out.map(x => x.orgId), [2, 5, 9]);
+  });
+
+  check('★ 未收录的一律沉底（不管是否重复）', () => {
+    const data = [mk(999, 0, '野'), mk(2, 0, '二'), mk(888, 0, '野2'), mk(5, 0, '五')];
+    const auth = [{ orgId: 2, index: 0 }, { orgId: 5, index: 0 }];
+    const out = orderByAuthority(data, auth);
+    assert.deepStrictEqual(out.map(x => x.orgId), [2, 5, 888, 999]);
+  });
+
+  check('未收录段内部按 orgId/index 稳定排序', () => {
+    const data = [mk(30, 1, 'x'), mk(30, 0, 'y'), mk(10, 0, 'z')];
+    const out = orderByAuthority(data, []);
+    assert.deepStrictEqual(out.map(x => `${x.orgId}:${x.index}`), ['10:0', '30:0', '30:1']);
+  });
+
+  check('官方表为空 → 全部按 orgId/index', () => {
+    const data = [mk(9, 0, 'a'), mk(2, 0, 'b')];
+    assert.deepStrictEqual(orderByAuthority(data, []).map(x => x.orgId), [2, 9]);
+  });
+
+  check('不修改入参', () => {
+    const data = [mk(9, 0, 'a'), mk(2, 0, 'b')];
+    orderByAuthority(data, []);
+    assert.deepStrictEqual(data.map(x => x.orgId), [9, 2]);
+  });
+}
+
+console.log('\n=== 5. 端到端：改名 + 去重 + 排序串联 ===');
+{
+  // 模拟真实场景：225 组错挂 + 39/689 同 id 重复
   const data = [
-    item({ orgId: 39, index: 0, id: 10, name: '新闻综合频道', stream: S('689/bb17/playlist.m3u8') }),
+    item({ orgId: 39, index: 0, id: 11, name: '新闻综合频道', stream: S('689/bb17/playlist.m3u8') }),
     item({ orgId: 225, index: 0, id: 1, name: '山东卫视', stream: 'https://jsylivealone302.iqilu.com/live/xiajin_tv02/index.m3u8?t=1' }),
     item({ orgId: 689, index: 0, id: 11, name: '新闻综合频道', stream: S('689/bb17/playlist.m3u8') }),
   ];
@@ -212,11 +260,15 @@ console.log('\n=== 4. 端到端：改名 + 去重串联 ===');
   };
   const r1 = applyNameOverrides(data, cfg);
   const r2 = dedupeByStream(r1.channels, cfg);
-  check('3 条 → 2 条（去重掉一条）', () => assert.strictEqual(r2.channels.length, 2));
+  // 官方表只收录 225:0
+  const r3 = orderByAuthority(r2.channels, [{ orgId: 225, index: 0 }]);
+  check('3 条 → 2 条（同 id 的那条被去重）', () => assert.strictEqual(r3.length, 2));
   check('225 的名字被修正', () => assert.strictEqual(
-    r2.channels.find(x => x.orgId === 225).name, '夏津综合'));
+    r3.find(x => x.orgId === 225).name, '夏津综合'));
   check('保留的是 689 那条', () => assert.strictEqual(
-    r2.channels.find(x => x.name === '新闻综合频道').orgId, 689));
+    r3.find(x => x.name === '新闻综合频道').orgId, 689));
+  check('官方表收录的 225 排在前，未收录的 689 沉底', () => assert.deepStrictEqual(
+    r3.map(x => x.orgId), [225, 689]));
 }
 
 console.log('\n' + '='.repeat(46));

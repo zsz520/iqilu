@@ -5,10 +5,14 @@
  *   nameOverrides 有 140 条，手写必错、且以后权威表更新后无法同步。
  *   这里把「权威表 → 覆盖映射」的推导固化下来，权威表一变重跑即可。
  *
+ * 口径：全项目统一用 index（上游返回数组下标，也是酷9/Vercel 取址脚本的 num 参数）。
+ *   权威表 csv 的第 2 列已经是 index（由 actions/csv-id-to-index.js 从上游 id 换算而来），
+ *   所以这里不需要任何换算，直接拿 orgId:index 当键。
+ *
  * 推导规则：
- *   1. 逐行读权威表（orgId,id,地市,规范名）
- *   2. 在 streams_all.json 里找到 (orgId, id) 对应的记录
- *   3. 若该记录当前名字与规范名不同，则写入覆盖映射 "orgId:id" → 规范名
+ *   1. 逐行读权威表（orgId,index,地市,规范名）
+ *   2. 在 streams_all.json 里找到 (orgId, index) 对应的记录
+ *   3. 若该记录当前名字与规范名不同，则写入覆盖映射 "orgId:index" → 规范名
  *   4. 只写「本地确实存在」的条目，避免出现永远命中不了的死键
  *
  * 用法：node actions/gen-name-overrides.js [--dry]
@@ -28,27 +32,23 @@ if (!fs.existsSync(csvPath)) {
   process.exit(1);
 }
 
-// ---- 1. 读权威表 ----
+// ---- 1. 读权威表（第 2 列已是 index 口径）----
 const rows = fs.readFileSync(csvPath, 'utf-8')
   .split(/\r?\n/)
   .map(l => l.trim())
   .filter(l => l && !l.startsWith('#'))
   .map(l => {
-    const [orgId, id, city, name] = l.split(',');
-    return { orgId: Number(orgId), id: Number(id), city, name };
+    const [orgId, index, city, name] = l.split(',');
+    return { orgId: Number(orgId), index: Number(index), city, name };
   });
 
 console.log(`权威表：${rows.length} 条（${new Set(rows.map(r => r.city)).size} 个地市）`);
 
-// ---- 2. 读本地数据，建 (orgId,id) 索引 ----
+// ---- 2. 读本地数据，建 (orgId,index) 索引 ----
 const all = JSON.parse(fs.readFileSync(allPath, 'utf-8'));
 
-// 权威表用的是上游 id，而全项目统一用 index 定位 → 这里做一次 id → index 的换算。
-// 建立 orgId 下的 id → index 索引。
-const idToIndex = new Map();   // "orgId:id" → index
 const byIndex = new Map();     // "orgId:index" → item
 for (const item of all) {
-  if (item.id !== undefined) idToIndex.set(`${item.orgId}:${item.id}`, item.index);
   byIndex.set(`${item.orgId}:${item.index}`, item);
 }
 
@@ -56,11 +56,9 @@ for (const item of all) {
 const overrides = {};
 let missing = 0, same = 0;
 for (const r of rows) {
-  const idx = idToIndex.get(`${r.orgId}:${r.id}`);
-  if (idx === undefined) { missing++; continue; }  // 本地没有这个频道，跳过
-  const key = `${r.orgId}:${idx}`;
+  const key = `${r.orgId}:${r.index}`;
   const local = byIndex.get(key);
-  if (!local) { missing++; continue; }
+  if (!local) { missing++; continue; }         // 本地没有这个频道，跳过
   if (local.name === r.name) { same++; continue; } // 名字已正确，不必覆盖
   overrides[key] = r.name;
 }

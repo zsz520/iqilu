@@ -20,6 +20,10 @@ const apiUrlOf = (item) => `${baseUrl}?orgid=${item.orgId}&num=${item.index}`;
 // 逗号是 TXT 的字段分隔符，名字里出现逗号会让字段错位（地址被当成第二个名字）。
 const sanitize = (s) => String(s).replace(/[,\r\n]/g, ' ');
 
+// ★ 本生成器只读成品、不分组、不改顺序。
+//   列表顺序由 filter-metadata.js 的 orderByAuthority 决定
+//   （官方表序在前、未收录的沉底）；这里原样输出。
+
 // —— 产物 1：M3U（保留，兼容原播放器用法）——
 // 带 #EXTM3U 头 + #EXTINF 行，能携带 tvg-logo 图标。
 let m3u = '#EXTM3U\n';
@@ -39,9 +43,12 @@ console.log(`M3U generated: iqilu-ku9.m3u (${data.length} channels)`);
 // 与 M3U 的区别：没有 #EXTM3U 头、没有 #EXTINF 行，
 // 频道名与地址写在同一行用英文逗号分隔。
 // 注意：TXT 这两列结构里没有图标位置，所以 tvg-logo 在 TXT 中会丢失。
-const txtLines = data.map(item => `${sanitize(item.name)},${apiUrlOf(item)}`);
+//
+// ★ 排序：streams_filtered.json 已按「官方表序在前、未收录沉底」排好。
+const lines = data.map(item => `${sanitize(item.name)},${apiUrlOf(item)}`);
+
 const header = `${sanitize(listName)},#genre#,${sanitize(listName)}`;
-const txt = [header, ...txtLines].join('\n') + '\n';
+const txt = [header, ...lines].join('\n') + '\n';
 
 fs.writeFileSync('iqilu-ku9.txt', txt, 'utf-8');
 console.log(`TXT generated: iqilu-ku9.txt (${data.length} channels)`);
