@@ -180,8 +180,8 @@ iqilu-ku9,#genre#,iqilu-ku9
 崂山综合,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=295&num=0
 胶州综合,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=305&num=0
 胶州生活,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=305&num=1
-包头新闻,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=423&num=0
-包头生活服务,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=423&num=1
+XX新闻,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=423&num=0
+XX生活服务,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=423&num=1
 新闻综合频道,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=39&num=0
 生活服务频道,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=39&num=1
 经济频道,https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js?orgid=39&num=2
