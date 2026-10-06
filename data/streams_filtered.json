@@ -21,7 +21,7 @@
   {
     "orgId": 153,
     "index": 1,
-    "name": "利津综合2",
+    "name": "利津文化生活",
     "icon": "https://img11.iqilu.com/153/2020/09/18/ab9930d5ab27b4c9d4f1842595884885.jpg",
     "stream": "https://alivealone302.litenews.cn/153/12f815bee68c4b53acbe7a3d7f680aa7/playlist.m3u8?k=7cf67d139cc293398d0fa95838adb385&t=1791253742",
     "desc": "文化生活频道",
@@ -249,7 +249,7 @@
   {
     "orgId": 105,
     "index": 1,
-    "name": "莒南综合2",
+    "name": "莒南影视",
     "icon": "https://img11.iqilu.com/105/2019/11/27/ab74ba3dbe9402bda353df438808e21a.jpg",
     "stream": "https://alivealone302.litenews.cn/105/de9cc9c2de4e457ea68be0ca7c567531/playlist.m3u8?k=52d928468a4a4af8d376acd928a0e1e0&t=1791253724",
     "id": 5,
@@ -287,7 +287,7 @@
   {
     "orgId": 113,
     "index": 1,
-    "name": "兰陵综合2",
+    "name": "兰陵公共",
     "icon": "https://img11.litenews.cn/113/2024/08/19/1f07b4f5b8749820a9f59d010a3f8fed.jpg",
     "logo": "https://img11.litenews.cn/113/2024/08/19/1f07b4f5b8749820a9f59d010a3f8fed.jpg",
     "stream": "https://alivealone302.litenews.cn/113/157db250f3974f3f9c28d7a30c313cf5/playlist.m3u8?k=c391837d208a4ec8dac140858284f1d5&t=1791253727",
@@ -301,8 +301,7 @@
       "image": "https://img11.litenews.cn/113/2024/08/19/1f07b4f5b8749820a9f59d010a3f8fed.jpg",
       "url": "https://iapp.llxrmtzx.com/share/dHZsLTExMy0xMzM.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 145,
@@ -325,7 +324,7 @@
   {
     "orgId": 145,
     "index": 1,
-    "name": "沂水综合2",
+    "name": "沂水生活",
     "icon": "https://img11.iqilu.com/145/2022/10/18/352a862dceb2fda3f271761ac2d267fe.jpg",
     "stream": "https://alivealone302.litenews.cn/145/e59cec1353f945e5b07662db7e203d2b/playlist.m3u8?k=9315ae26062926f2ca799da22ed1bbd2&t=1791253739",
     "id": 2,
@@ -338,8 +337,7 @@
       "image": "https://img11.iqilu.com/145/2022/10/18/352a862dceb2fda3f271761ac2d267fe.jpg",
       "url": "https://iapp.yishuishoufa.com/share/dHZsLTE0NS0y.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 161,
@@ -400,7 +398,7 @@
   {
     "orgId": 167,
     "index": 1,
-    "name": "临沭综合2",
+    "name": "临沭生活",
     "icon": "https://img11.iqilu.com/167/2019/11/25/b6232ac766c2ed3e8394336399789f60.jpg",
     "stream": "https://alivealone302.litenews.cn/167/fb91283de3bb4a85adfa892ab1e81651/playlist.m3u8?k=4cf271e590d76050e0097cf34f7f23fc&t=1791253748",
     "id": 4,
@@ -438,7 +436,7 @@
   {
     "orgId": 177,
     "index": 1,
-    "name": "沂南综合2",
+    "name": "沂南影视",
     "icon": "https://img11.iqilu.com/177/2020/01/01/f296fc2db31f96d712896b94876cfaae.jpg",
     "stream": "https://alivealone302.litenews.cn/177/b111a8e2cc6e4a399590435bf2e58f02/playlist.m3u8?k=f9c7768aa06a142881b3c6b3778b72ea&t=1791253751",
     "id": 7,
@@ -457,7 +455,7 @@
   {
     "orgId": 191,
     "index": 0,
-    "name": "河东影视",
+    "name": "河东综合",
     "icon": "https://img11.iqilu.com/191/2020/05/18/93e05cf96912049bc9ac5f9cd801e37f.png",
     "stream": "https://alivealone302.litenews.cn/191/21838cacf6bb48efbc3bee9c7ca5ecd5/playlist.m3u8?k=d86205f613cea742cc0ea933b0ae30e2&t=1791253757",
     "id": 1,
@@ -476,7 +474,7 @@
   {
     "orgId": 191,
     "index": 1,
-    "name": "河东综合",
+    "name": "河东影视",
     "icon": "https://img11.iqilu.com/191/2020/05/18/93e05cf96912049bc9ac5f9cd801e37f.png",
     "stream": "https://alivealone302.litenews.cn/191/c15fdbc5161e45808c55c45eba8fda1d/playlist.m3u8?k=1a8d576e5ff575096c11c0029da47c55&t=1791253757",
     "id": 2,
@@ -571,7 +569,7 @@
   {
     "orgId": 77,
     "index": 1,
-    "name": "荣成综合2",
+    "name": "荣成生活",
     "icon": "https://img11.iqilu.com/77/2020/04/13/d8f9b0205fc23d1cda757345ccfe004d.png",
     "stream": "https://alivealone302.litenews.cn/77/4efab9419e7c4d9398a9ac543bba7565/playlist.m3u8?k=f1ade4bde033a4390faace8625e69b40&t=1791253713",
     "id": 11,
@@ -584,8 +582,7 @@
       "image": "https://img11.iqilu.com/77/2020/04/13/d8f9b0205fc23d1cda757345ccfe004d.png",
       "url": "https://iapp.rcsrmtzx.cn/share/dHZsLTc3LTEx.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 143,
@@ -609,7 +606,7 @@
   {
     "orgId": 143,
     "index": 1,
-    "name": "乳山综合2",
+    "name": "乳山生活",
     "icon": "https://img11.iqilu.com/143/2019/12/04/92a8f8eee69d466928bdf95fa94e9306.jpg",
     "stream": "https://alivealone302.litenews.cn/143/7aa1513e8b9444d8a872e3f66a8cff5e/playlist.m3u8?k=c49923f1535c3256b17b24d299d25523&t=1791253738",
     "id": 9,
@@ -702,7 +699,7 @@
   {
     "orgId": 33,
     "index": 1,
-    "name": "武城综合2",
+    "name": "武城综艺影视",
     "icon": "http://img11.iqilu.com/33/2019/07/12/f74dfa6d223fb23afc9371f565f1bbd1.jpg",
     "stream": "https://alivealone302.litenews.cn/33/af3e15a0a9b449358c7f2252a2827de5/playlist.m3u8?k=433b57dc898635521b08428cf46ec72d&t=1791253696",
     "id": 6,
@@ -795,7 +792,7 @@
   {
     "orgId": 223,
     "index": 1,
-    "name": "夏津综合2",
+    "name": "夏津公共",
     "icon": "https://img11.iqilu.com/223/2020/03/04/84a8fd5139ce955aede3da26931adb2c.jpg",
     "stream": "https://alivealone302.litenews.cn/223/25245a8cce65456d8a6f7cc888a71a0f/playlist.m3u8?k=a99b05f311d4a29690f6845b868ca7fb&t=1791253769",
     "id": 2,
@@ -907,7 +904,7 @@
   {
     "orgId": 299,
     "index": 1,
-    "name": "五莲综合2",
+    "name": "五莲文化旅游",
     "icon": "https://img11.iqilu.com/299/2020/12/09/1a2f0d14de381981d77c149b649167e3.jpg",
     "stream": "https://alivealone302.litenews.cn/299/88621c064ade45db9478010b15eed2ad/playlist.m3u8?k=d70d4ef681445634bc506ff1e533bac3&t=1791253799",
     "desc": "文化旅游频道",
@@ -1038,7 +1035,7 @@
   {
     "orgId": 51,
     "index": 1,
-    "name": "肥城综合2",
+    "name": "肥城生活",
     "icon": "https://img11.iqilu.com/51/2020/10/21/7a8e9cead2c6b4b8fda6dfee8de5e73a.jpg",
     "stream": "https://alivealone302.litenews.cn/51/a0a622ce69e5489bac69dacc457bfa7b/playlist.m3u8?k=8cff27f36489eeec4f5fa670ffd33c7b&t=1791253703",
     "desc": "肥城生活频道",
@@ -1171,7 +1168,7 @@
   {
     "orgId": 187,
     "index": 1,
-    "name": "东平综合2",
+    "name": "东平民生",
     "icon": "https://img11.iqilu.com/187/2021/01/20/51351221cff29862755d6e84897c11d0.jpg",
     "stream": "https://alivealone302.litenews.cn/187/79c9250a48db4b77bf0e58cf9a06c06c/playlist.m3u8?k=1e817449477113810e15f6e4a58bffad&t=1791253755",
     "desc": "东平民生",
@@ -1184,13 +1181,12 @@
       "image": "https://img11.iqilu.com/187/2021/01/20/51351221cff29862755d6e84897c11d0.jpg",
       "url": "https://iapp.dpsjt.cn/share/dHZsLTE4Ny0xMQ.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 263,
     "index": 0,
-    "name": "泰山TV",
+    "name": "泰山综合",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/263/c22bd61a847a4723bfd30ddbbd12a2ae/playlist.m3u8?k=5d940c1eb11767b7b59c04ddf15448a3&t=1791253785",
     "desc": "泰安数字电视8频道 宣传泰山区 服务泰山区",
@@ -1209,7 +1205,7 @@
   {
     "orgId": 293,
     "index": 0,
-    "name": "岱岳TV",
+    "name": "岱岳综合",
     "icon": "https://img11.iqilu.com/293/2020/11/05/96ad3aaf69d8b02f1ff4f3ae6b0b1035.png",
     "stream": "https://alivealone302.litenews.cn/293/03338daee33e47f4810595f18507c52a/playlist.m3u8?k=41a7b86982a71351b61568d4632eb6e0&t=1791253797",
     "desc": "岱岳TV",
@@ -1221,7 +1217,8 @@
       "image": "https://img11.iqilu.com/293/2020/11/05/96ad3aaf69d8b02f1ff4f3ae6b0b1035.png",
       "url": "https://iapp.daiyuerongmei.cn/share/dHZsLTI5My0x.html",
       "desc": "点击观看精彩节目"
-    }
+    },
+    "nameSource": "override"
   },
   {
     "orgId": 85,
@@ -1244,7 +1241,7 @@
   {
     "orgId": 85,
     "index": 1,
-    "name": "济阳综合2",
+    "name": "济阳影视",
     "icon": "https://img11.iqilu.com/85/2019/11/04/16f811e37834aa6920557211b5bcdd03.jpg",
     "stream": "https://alivealone302.litenews.cn/85/1527ae3203724176bfca87dd3f0954ee/playlist.m3u8?k=672b4e36582befd8ac2da3c8123d4760&t=1791253716",
     "id": 2,
@@ -1257,8 +1254,7 @@
       "image": "https://img11.iqilu.com/85/2019/11/04/16f811e37834aa6920557211b5bcdd03.jpg",
       "url": "https://iapp.jiyangrongmei.cn/share/dHZsLTg1LTI.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 97,
@@ -1282,7 +1278,7 @@
   {
     "orgId": 97,
     "index": 1,
-    "name": "商河综合2",
+    "name": "商河影视",
     "icon": "https://img11.iqilu.com/97/2022/04/28/3ee219f867bd346f35efb27e60baf4b9.jpg",
     "stream": "https://alivealone302.litenews.cn/261/18aef04fdb68469da1c11028d80b69c8/playlist.m3u8?k=eb5bc93acba94232dcd1265a7ae07b83&t=1791253721",
     "id": 2,
@@ -1354,7 +1350,7 @@
   {
     "orgId": 257,
     "index": 1,
-    "name": "平阴综合2",
+    "name": "平阴乡村振兴",
     "icon": "https://img11.iqilu.com/257/2020/09/10/d1507e1b5c265e5cab92c0e7f73e0bdf.jpg",
     "stream": "https://alivealone302.litenews.cn/257/709a2743e0904bd9a3c25a1e7976b089/playlist.m3u8?k=2462cbb2b1d28e6f7702d44de06fc718&t=1791253782",
     "desc": "平阴广播电视台乡村振兴节目直播",
@@ -1366,8 +1362,7 @@
       "image": "https://img11.iqilu.com/257/2020/09/10/d1507e1b5c265e5cab92c0e7f73e0bdf.jpg",
       "url": "https://iapp.aipingyin.cn/share/dHZsLTI1Ny0z.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 261,
@@ -1463,7 +1458,7 @@
   {
     "orgId": 63,
     "index": 1,
-    "name": "鱼台综合2",
+    "name": "鱼台生活",
     "icon": "http://img11.iqilu.com/63/2019/10/22/c32cf58cfebc6f0c6f3a577da015f29c.png",
     "logo": "",
     "stream": "https://alivealone302.litenews.cn/63/07076ab338564f45b5de93d6be25d15c/playlist.m3u8?k=b84b755481b7a9f45c0f3110d0339480&t=1791253707",
@@ -1555,7 +1550,7 @@
   {
     "orgId": 129,
     "index": 1,
-    "name": "金乡综合2",
+    "name": "金乡生活",
     "icon": "http://img11.iqilu.com/129/2019/10/17/fb1c2f3edc7b66510242cdd5038ad43b.jpg",
     "stream": "https://alivealone302.litenews.cn/129/ad461c2549aa4e3e90da924ed10a5f03/playlist.m3u8?k=3586c57d045ff49a1678cbfcd2e8faf1&t=1791253733",
     "id": 4,
@@ -1592,7 +1587,7 @@
   {
     "orgId": 181,
     "index": 1,
-    "name": "邹城综合2",
+    "name": "邹城文化生活",
     "icon": "https://img11.iqilu.com/181/2020/04/08/7fddab13949d229dd7da516a5ef0e53a.jpg",
     "stream": "https://blivealone302.litenews.cn/b181/220c388ba363468aaf5cb8803708c627/index.m3u8?t=1791257353&k=4a50893b140810aa9b7e9383b800b25c",
     "desc": "邹城文化生活频道",
@@ -1630,7 +1625,7 @@
   {
     "orgId": 273,
     "index": 1,
-    "name": "嘉祥综合2",
+    "name": "嘉祥影视",
     "icon": "https://img11.iqilu.com/273/2020/09/15/312889d23498e6ea20e925ebcca8132d.jpg",
     "stream": "https://alivealone302.litenews.cn/273/fed7b37ad3e044319875cb8c6848f117/playlist.m3u8?k=3a3bd6ade836ae718a47f1b95c6852fc&t=1791253789",
     "desc": "生活频道",
@@ -1723,7 +1718,7 @@
   {
     "orgId": 23,
     "index": 1,
-    "name": "桓台综合2",
+    "name": "桓台影视",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/23/696df531d303409f9df43709e521bc5f/playlist.m3u8?k=ce86df78641e72e5c3fc2ce0f2618164&t=1791253692",
     "id": 16,
@@ -1760,7 +1755,7 @@
   {
     "orgId": 61,
     "index": 1,
-    "name": "高青综合2",
+    "name": "高青形式",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/61/56d09086fb25449cb4eefb24f5042937/playlist.m3u8?k=bf1d73b4ddd5ecb911aff27403b9fb0a&t=1791253707",
     "id": 2,
@@ -1911,7 +1906,7 @@
   {
     "orgId": 203,
     "index": 1,
-    "name": "沂源综合2",
+    "name": "沂源生活",
     "icon": "https://img11.iqilu.com/203/2020/07/11/c64adee3422bdfbc90167112d5502782.png",
     "stream": "https://alivealone302.litenews.cn/203/77ab4119a24e48a2acfda17dec60f76c/playlist.m3u8?k=d276d21e4619763e72f9f646453c739c&t=1791253762",
     "id": 7,
@@ -1984,7 +1979,7 @@
   {
     "orgId": 11,
     "index": 1,
-    "name": "邹平综合2",
+    "name": "邹平民生",
     "icon": "http://img11.iqilu.com/11/2019/08/29/50b008d8be584471e155a710795fcbbb.png",
     "stream": "https://alivealone302.litenews.cn/11/a60cdcc3bece44db81533c01bc9485e3/playlist.m3u8?k=75fdcfcccc40e89ca69996fd5b59cfa4&t=1791253688",
     "id": 16,
@@ -2021,7 +2016,7 @@
   {
     "orgId": 169,
     "index": 1,
-    "name": "无棣综合2",
+    "name": "无棣综艺",
     "icon": "https://img11.iqilu.com/169/2021/08/02/da88715c4ac73b748a2738e2b64b22e8.jpg",
     "stream": "https://alivealone302.litenews.cn/169/727eebb295c7432985d27449f0b5bafb/playlist.m3u8?k=b856b7894358ded708a0ea6c0d982ef2&t=1791253748",
     "desc": "无棣县融媒体中心综艺频道",
@@ -2057,7 +2052,7 @@
   {
     "orgId": 207,
     "index": 1,
-    "name": "博兴综合2",
+    "name": "博兴生活",
     "icon": "https://img11.iqilu.com/207/2021/01/16/1e6d79d9549ba147584a1699aba752b5.jpg",
     "stream": "https://alivealone302.litenews.cn/207/a06b934b9b7c4eb5998ec5cff736c78d/playlist.m3u8?k=467f2fb4fb70de5a246766c708ae953d&t=1791253763",
     "id": 4,
@@ -2094,7 +2089,7 @@
   {
     "orgId": 211,
     "index": 1,
-    "name": "惠民综合2",
+    "name": "惠民影视",
     "icon": "https://img11.iqilu.com/211/2020/01/10/4668b6ad7cb7e5fa91e65436231e540b.jpg",
     "stream": "https://alivealone302.litenews.cn/211/8f6e0b8b2ec74a1796a7d28770a3c944/playlist.m3u8?k=dafc7033642612a486db3f0c813b08da&t=1791253765",
     "id": 3,
@@ -2133,7 +2128,7 @@
   {
     "orgId": 249,
     "index": 0,
-    "name": "滨城TV",
+    "name": "滨城综合",
     "icon": "https://img11.iqilu.com/249/2020/06/17/000c49aa42a82e45f6a0d8106d61c435.jpg",
     "stream": "https://alivealone302.litenews.cn/249/301df5063a8f46dc8c7bea7984bebfd6/playlist.m3u8?k=295f42ed0d5a8f8516789f59a2f5a86c&t=1791253779",
     "desc": "滨城TV",
@@ -2146,7 +2141,8 @@
       "image": "https://img11.iqilu.com/249/2020/06/17/000c49aa42a82e45f6a0d8106d61c435.jpg",
       "url": "https://iapp.binchengrongmei.com/share/dHZsLTI0OS0zNQ.html",
       "desc": "点击观看精彩节目"
-    }
+    },
+    "nameSource": "override"
   },
   {
     "orgId": 1,
@@ -2170,7 +2166,7 @@
   {
     "orgId": 15,
     "index": 0,
-    "name": "潍城TV",
+    "name": "潍城综合",
     "icon": "https://img11.iqilu.com/15/2020/04/09/8cad1fc14930275358a8db0e7c4b37c9.jpg",
     "stream": "https://alivealone302.litenews.cn/15/481ce97b425043f9a9d905695b37151f/playlist.m3u8?k=e9ef001c29202877d9f57b6dedd8d49e&t=1791253689",
     "id": 3,
@@ -2245,7 +2241,7 @@
   {
     "orgId": 71,
     "index": 1,
-    "name": "高密综合2",
+    "name": "高密2",
     "icon": "https://img11.iqilu.com/71/2021/04/18/016dce0ffb08811432ccde33ec6118c8.jpg",
     "stream": "https://alivealone302.litenews.cn/71/202304_1651887494448484352/playlist.m3u8?k=3612d4d4a632a12ac28b99c3dfa9f6c1&t=1791253711",
     "desc": "党建农科",
@@ -2321,7 +2317,7 @@
   {
     "orgId": 125,
     "index": 1,
-    "name": "青州综合2",
+    "name": "青州文化旅游",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/125/6eca226569784a909d690d4908255d7a/playlist.m3u8?k=503315b0e6cfba4545c0c4b4436bb37c&t=1791253732",
     "id": 3,
@@ -2340,7 +2336,7 @@
   {
     "orgId": 127,
     "index": 0,
-    "name": "奎文电视台",
+    "name": "奎文综合",
     "icon": "https://img11.iqilu.com/127/2020/04/07/a3bec6ca8416f29cfb77093bb81bef54.png",
     "stream": "https://alivealone302.litenews.cn/127/202304_1651887503323631616/playlist.m3u8?k=a12f3608d9bb92d42e616d98f2ceb5e2&t=1791253732",
     "desc": " ",
@@ -2397,7 +2393,7 @@
   {
     "orgId": 137,
     "index": 1,
-    "name": "安丘综合2",
+    "name": "安丘民生",
     "icon": "http://img11.iqilu.com/137/2019/10/29/50179260359a51bb7c2da20aed87a036.jpg",
     "stream": "https://alivealone302.litenews.cn/137/404a4729eb544d84a2491dd37137be95/playlist.m3u8?k=d3bb406ed3c2f8d0041c4e3ba1f67362&t=1791253736",
     "id": 4,
@@ -2549,7 +2545,7 @@
   {
     "orgId": 635,
     "index": 2,
-    "name": "潍坊影视综艺",
+    "name": "潍坊公共频道",
     "icon": "https://img11.litenews.cn/635/2023/06/16/7dc04489203121086323a1002652354f.png",
     "logo": "https://img11.litenews.cn/635/2023/06/16/7dc04489203121086323a1002652354f.png",
     "stream": "https://alivealone302.litenews.cn/635/1ebcf529cada4d448a48f73b216cd1ac/playlist.m3u8?k=3791d1b4d729a29b39f6e2da3625a33e&t=1791253930",
@@ -2568,7 +2564,7 @@
   {
     "orgId": 635,
     "index": 3,
-    "name": "潍坊科教文旅",
+    "name": "潍坊科教文化",
     "icon": "https://img11.litenews.cn/635/2023/06/16/52d093b6da5aa768021280c51decff50.png",
     "logo": "https://img11.litenews.cn/635/2023/06/16/52d093b6da5aa768021280c51decff50.png",
     "stream": "https://alivealone302.litenews.cn/635/09ddcc111dda41d2b3abed4a8f2efdb0/playlist.m3u8?k=81062c846f048995ba334b168a261812&t=1791253930",
@@ -2604,7 +2600,7 @@
   {
     "orgId": 57,
     "index": 1,
-    "name": "龙口综合2",
+    "name": "龙口生活",
     "icon": "https://img11.iqilu.com/57/2020/04/02/a2ae029ad7a3ed35bb0dc8d2353fb374.png",
     "stream": "https://alivealone302.litenews.cn/57/ea5ff7ade750484db9ebd749015f0bc1/playlist.m3u8?k=173f460d73a87b7069cd34185e17c046&t=1791253705",
     "id": 2,
@@ -2616,8 +2612,7 @@
       "image": "https://img11.iqilu.com/57/2020/04/02/a2ae029ad7a3ed35bb0dc8d2353fb374.png",
       "url": "https://iapp.lkrmt.cn/share/dHZsLTU3LTI.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 165,
@@ -2641,7 +2636,7 @@
   {
     "orgId": 165,
     "index": 1,
-    "name": "栖霞综合2",
+    "name": "栖霞苹果",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/165/8d914d1f984a4b11af6e798f8456b501/playlist.m3u8?k=9aa621053410b9cb15dbb2b38c400d9f&t=1791253747",
     "desc": "栖霞市苹果频道",
@@ -2660,7 +2655,7 @@
   {
     "orgId": 175,
     "index": 0,
-    "name": "长岛TV",
+    "name": "长岛综合",
     "icon": "https://img11.iqilu.com/175/2021/04/22/c2b48fd7e114905ce8ca97a56236ac5f.png",
     "stream": "https://alivealone302.litenews.cn/175/4b31e523957c4edeaca32b7dc5693b01/playlist.m3u8?k=56468614a126888cbac706bf5978dc4b&t=1791253751",
     "id": 1,
@@ -2697,7 +2692,7 @@
   {
     "orgId": 241,
     "index": 1,
-    "name": "莱阳综合2",
+    "name": "莱阳民生综艺",
     "icon": "https://img11.iqilu.com/241/2020/06/16/e5944e5e1a026c9f44e8602db7981268.png",
     "stream": "https://alivealone302.litenews.cn/241/e93d2d2f2cd84b7789c6f7f37670180a/playlist.m3u8?k=a4f73fd20221228cd6e1be22b3de8b68&t=1791253776",
     "desc": "莱阳民生综艺",
@@ -2788,7 +2783,7 @@
   {
     "orgId": 43,
     "index": 1,
-    "name": "高唐综合2",
+    "name": "高唐综艺",
     "icon": "https://img11.iqilu.com/43/2020/06/11/66b2002fa234a36ffba474667f499aa6.jpg",
     "stream": "https://alivealone302.litenews.cn/43/b3859631ad774ae8b6ad0c88dfa9154f/playlist.m3u8?k=a5018c4ff305940493de14a86e428de0&t=1791253700",
     "desc": "高唐综艺频道",
@@ -2825,7 +2820,7 @@
   {
     "orgId": 65,
     "index": 1,
-    "name": "临清综合2",
+    "name": "临清经济信息",
     "icon": "",
     "stream": "https://alivealone302.litenews.cn/65/3eed23acd4b34ab3867846f86d287559/playlist.m3u8?k=902747d7a773b1334fb6c247e86fb292&t=1791253708",
     "id": 5,
@@ -2838,8 +2833,7 @@
       "image": "",
       "url": "https://iapp.lqrmtzx.cn/share/dHZsLTY1LTU.html",
       "desc": "点击观看精彩节目"
-    },
-    "nameSource": "override"
+    }
   },
   {
     "orgId": 79,
@@ -2882,7 +2876,7 @@
   {
     "orgId": 81,
     "index": 1,
-    "name": "阳谷综合2",
+    "name": "阳谷影视",
     "icon": "https://img11.iqilu.com/81/2021/05/10/4a0c3458485adee3c3d2eed5550609e4.jpg",
     "stream": "https://alivealone302.litenews.cn/81/21c012eeb5d24414ac302b958ff74799/playlist.m3u8?k=a1b6b636fb8b6111945d3c45988609a0&t=1791253715",
     "desc": "阳谷影视频道",
@@ -2920,7 +2914,7 @@
   {
     "orgId": 95,
     "index": 1,
-    "name": "东阿综合2",
+    "name": "东阿2",
     "icon": "https://img11.litenews.cn/95/2024/09/24/da0176a6121c5221eeedccc5de4693af.jpg",
     "stream": "https://alivealone302.litenews.cn/95/f44944f928d44aecb7e90b46ac53f10d/playlist.m3u8?k=248d2b7ead10199b84989669cab1cc7a&t=1791253720",
     "desc": "东阿县融媒中心综艺频道",
@@ -2976,7 +2970,7 @@
   {
     "orgId": 27,
     "index": 1,
-    "name": "定陶综合2",
+    "name": "定陶2",
     "icon": "http://img11.iqilu.com/27/2019/08/13/68e6240eb2245dec5f06f5031381f319.jpg",
     "stream": "https://alivealone302.litenews.cn/27/b91d0a6d35514440b4895c07db91d144/playlist.m3u8?k=c7e57de78cea5d6dcfcd5182f9b0e836&t=1791253694",
     "id": 8,
@@ -3033,7 +3027,7 @@
   {
     "orgId": 131,
     "index": 1,
-    "name": "成武综合2",
+    "name": "成武综艺",
     "icon": "http://img11.iqilu.com/131/2019/10/18/89010ea387ffa2079662899715859ae4.jpg",
     "stream": "https://alivealone302.litenews.cn/131/44014c16d42d4929bb9bc2dd94572a3a/playlist.m3u8?k=04c3e79ed10ba6cc981fb4dd53640acc&t=1791253734",
     "id": 2,
@@ -3052,7 +3046,7 @@
   {
     "orgId": 135,
     "index": 1,
-    "name": "郓城综合2",
+    "name": "郓城2",
     "icon": "http://img11.iqilu.com/135/2019/10/28/3f4b3c85fec131b0fd7ad0610aef4180.png",
     "stream": "https://alivealone302.litenews.cn/135/d2513d89443546a6a96daefb51d4406c/playlist.m3u8?k=af968e7f6d8a5ecf40406e3092af54f8&t=1791253735",
     "id": 2,
@@ -3145,7 +3139,7 @@
   {
     "orgId": 219,
     "index": 0,
-    "name": "牡丹区新闻综合",
+    "name": "牡丹区综合",
     "icon": "https://img11.iqilu.com/219/2020/06/22/a5a45f80e34beb493b2c35d181bb4946.png",
     "stream": "https://alivealone302.litenews.cn/219/896cf05fadb5486e94f5f323cf03abd2/playlist.m3u8?k=7c57c0dd9e67f26456d4e20e790c41eb&t=1791253768",
     "desc": "牡丹电视台—新闻综合",
@@ -3202,7 +3196,7 @@
   {
     "orgId": 45,
     "index": 1,
-    "name": "平度综合2",
+    "name": "平度生活服务",
     "icon": "https://img11.iqilu.com/45/2020/12/03/5f1bb5b9b87534d0dcbc6981a55df34d.jpg",
     "stream": "https://alivealone302.litenews.cn/45/1ec11ad4f7e544bbbbaa4cef58eb6c0d/playlist.m3u8?k=0452c2d144aa3418933a4321066d9d3d&t=1791253701",
     "id": 5,
@@ -3239,7 +3233,7 @@
   {
     "orgId": 221,
     "index": 1,
-    "name": "即墨综合2",
+    "name": "即墨生活服务",
     "icon": "https://img11.iqilu.com/221/2020/07/03/bcd78e244fd15dbbc66fa96c4fc0d7ef.jpg",
     "stream": "https://alivealone302.litenews.cn/221/851ddde1be6b41daaf1cfb791d03586a/playlist.m3u8?k=5238218ca44232c207a9f5a371a7e764&t=1791253768",
     "id": 3,
@@ -3276,7 +3270,7 @@
   {
     "orgId": 227,
     "index": 1,
-    "name": "黄岛综合2",
+    "name": "黄岛生活",
     "icon": "https://img11.iqilu.com/227/2020/04/13/d5dd6313cd6afcb154c3626b2069a7f6.png",
     "stream": "https://alivealone302.litenews.cn/227/fc4f8ec50d0b4a95a8b17d91c9bfec30/playlist.m3u8?k=c6561328f6bc14366a9c6db8cd468787&t=1791253771",
     "desc": "黄岛电视台生活频道",
@@ -3314,7 +3308,7 @@
   {
     "orgId": 253,
     "index": 1,
-    "name": "莱西综合2",
+    "name": "莱西生活",
     "icon": "https://img11.iqilu.com/253/2020/09/22/ba2ef2676fa90b581f6dc4f5e9d31000.png",
     "stream": "https://alivealone302.litenews.cn/253/102010c7bdfb471ab50fdb56f6d3fb60/playlist.m3u8?k=b2ae94751944111f58aea93c46c382ec&t=1791253781",
     "desc": "莱西生活频道",
@@ -3333,7 +3327,7 @@
   {
     "orgId": 295,
     "index": 0,
-    "name": "崂山TV",
+    "name": "崂山综合",
     "icon": "https://img11.iqilu.com/295/2020/12/09/1f6f501893b381654c79bcb53154e6c0.png",
     "stream": "https://alivealone302.litenews.cn/295/a54b85aff0ef4d45bf606ef3c7884d3d/playlist.m3u8?k=22e7e56c9e63f0d9f42598654458d3d2&t=1791253797",
     "desc": "崂山人自己的频道",
@@ -3371,7 +3365,7 @@
   {
     "orgId": 305,
     "index": 1,
-    "name": "胶州综合2",
+    "name": "胶州生活",
     "icon": "https://img11.iqilu.com/305/2021/05/07/b2777021f2fa88dc90500d50b23b6b2d.png",
     "stream": "https://alivealone302.litenews.cn/305/c663c037b5c345cdbe92a1e77e4c8710/playlist.m3u8?k=b37240749536f06c06e53bfc9e34c761&t=1791253801",
     "desc": "胶州广播电视台生活频道作为生活服务主阵地，坚持以人民为中心的工作理念，以生活服务类栏目为主干，关注民生热点，服务大众生活，锚定增强文化自觉、坚定文化自信目标任务，努力提供丰富多彩、质量优秀的影视文化作品，更好满足人民群众日益增长的精神文化需求。",
