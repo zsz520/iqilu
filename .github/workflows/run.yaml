@@ -1,5 +1,8 @@
 name: fetch raw and generate m3u
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
 
