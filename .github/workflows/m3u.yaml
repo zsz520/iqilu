@@ -27,6 +27,7 @@ jobs:
         run: |
           node actions/gen-m3u-generic.js
           node actions/gen-m3u-ku9.js
+          node actions/gen-m3u-direct.js
       - name: Set Git author
         run: |
             git config user.name 'github-actions[bot]'
