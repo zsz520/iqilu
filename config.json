@@ -1,8 +1,8 @@
 {
-  "_comment_baseUrl_ku9": "酷9 远程 JS 的脚本地址前缀，生成器会在后面拼 ?orgid=X&num=Y。★ 注意别用 k-web：酷9 的 k-web 规则会「只取末段文件名、丢掉中间路径」，用在 jsDelivr 的仓库路径上会退化成 fastly.jsdelivr.net/iqilu.js（不存在）。直接用标准 gh 路径。",
+  "_comment_baseUrl_ku9": "酷9 远程 JS 脚本地址前缀，拼接 ?orgid=X&num=Y。别用 k-web：会只取末段文件名、丢掉中间路径。",
   "baseUrl_ku9": "https://fastly.jsdelivr.net/gh/zsz520/iqilu@main/ku9/iqilu.js",
   "baseUrl_generic": "https://iqilu-kohl.vercel.app/",
-  "_comment": "过滤规则见 actions/lib/filter.js。四类规则按顺序生效。",
+  "_comment": "过滤规则见 actions/lib/filter.js，四类规则按顺序生效。",
   "blacklistNames": [
     "CCTV",
     "中央一套",
@@ -13,9 +13,10 @@
   "blacklistOrgIds": [
     21,
     29,
-    225
+    225,
+    683
   ],
-  "_comment_nameOverrides": "频道名修正表。键为 \"orgId:index\" —— 全项目统一用 index 定位（index 即上游返回数组下标，也是酷9/Vercel 取址脚本的 num 参数）。值是规范名。数据来源 data/channel_names.csv（官方清单，用 id 换算成 index 后生成）。用于修正上游「名字错挂 / 缺地域前缀」的问题，例如 225:0 上游名为山东卫视、实际流是夏津电视台（xiajin_tv02）。生成脚本：node actions/gen-name-overrides.js",
+  "_comment_nameOverrides": "频道名修正表，键为 \"orgId:index\"（index = 上游数组下标 = 酷9 取址脚本的 num）。来源 data/channel_names.csv。生成：node actions/gen-name-overrides.js",
   "nameOverrides": {
     "1:0": "昌乐综合",
     "5:0": "庆云综合",
@@ -156,12 +157,12 @@
     "537:1": "东营公共",
     "537:2": "东营科教",
     "635:0": "潍坊新闻综合",
-    "635:1": "潍坊生活",
+    "635:1": "潍坊经济生活",
     "635:2": "潍坊影视综艺",
     "635:3": "潍坊科教文旅"
   },
-  "_comment_order": "列表顺序规则：官方表（data/channel_names.csv）里有的频道按官方表行序排在前；官方表没有的（无论是否重复）一律沉底，内部按 orgId/index。维护方式＝直接改官方表，产物顺序随之变化；末尾那段即「新扫到、待确认」的台。",
-  "_comment_dedupe": "按流地址去重，但★只合并「流地址相同 且 上游 id 也相同」的——id 不同一律保留（上游可能存在不同 id 共用一路流的情况，贸然合并会丢台）。keepOrgId 里的目录段优先保留（更接近流的所有者）。",
+  "_comment_order": "顺序规则：官方表（data/channel_names.csv）里有的按表行序排在前，没有的一律沉底（未收录段 = 新扫到待确认的台，按 orgId/index 排）。维护方式＝直接改官方表。",
+  "_comment_dedupe": "★ 只合并「流地址相同 且 上游 id 也相同」的；id 不同一律保留（可能存在不同 id 共用一路流，贸然合并会丢台）。",
   "dedupe": {
     "enabled": true,
     "preferLongerName": true,
@@ -173,12 +174,16 @@
   },
   "_comment_blacklistNameRegex": "频道名匹配任一正则即屏蔽（只查 name，不查 desc，避免描述长文本误伤）",
   "blacklistNameRegex": [],
-  "_comment_excludeNamePatterns": "先匹配再豁免：命中 match 且【不】命中 unless → 屏蔽。用于屏蔽广播电台、但保留『XX广播电视台』这类电视频道。",
+  "_comment_excludeNamePatterns": "先匹配再豁免：命中 match 且【不】命中 unless → 屏蔽。条1 屏蔽广播电台、保留『XX广播电视台』；条2 屏蔽非电视台的临时流（发布会/慢直播/热线）。",
   "excludeNamePatterns": [
     {
       "match": "FM|广播",
       "unless": "广播电视台"
+    },
+    {
+      "match": "直播|发布会|热线",
+      "unless": ""
     }
   ],
-  "_comment_blacklistOrgIds": "机构整包黑名单。⚠️ 一个 orgId 常含多个频道，改前先确认组内内容。\n  21  —— 山东卫视系列 9 个频道\n  29  —— 空\n  225 —— 废弃错误组：老 iqilu 直连源，名字全错（id=1 名为「山东卫视」实为夏津 xiajin_tv02；id=3 名为「少儿频道」实为体育 typd）。夏津的正规组是 orgId=223。"
+  "_comment_blacklistOrgIds": "机构整包黑名单。⚠️ 一个 orgId 常含多个频道，改前先确认组内内容。\n  21  —— 山东卫视系列 9 个频道\n  29  —— 空占位（本地扫不到，真正带数据的是它的马甲 683）\n  225 —— 废弃错误组：老 iqilu 直连源，名字全错（夏津的正规组是 223）\n  683 —— 29 的马甲组：7 条外省/省台频道，流路径全指向 /29/…。单靠 29 无效。"
 }

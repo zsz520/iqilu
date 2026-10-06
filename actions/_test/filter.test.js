@@ -83,6 +83,32 @@ console.log('\n=== 4. excludeNamePatterns：先匹配再豁免 ★（本次核�
     () => assert.strictEqual(shouldKeep(item({ name: '乳山综合频道', desc: '乳山广播电视台综合频道' }), cfg), true));
 }
 
+console.log('\n=== 4b. 屏蔽「非电视台」临时流：直播 / 发布会 / 热线 ===');
+{
+  const cfg = {
+    ...baseConfig,
+    excludeNamePatterns: [
+      { match: 'FM|广播', unless: '广播电视台' },
+      { match: '直播|发布会|热线', unless: '' },
+    ],
+  };
+
+  // 实测扫到的 10 条，全部应删
+  check('「新闻发布会」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '新闻发布会' }), cfg), false));
+  check('「首发直播」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '首发直播' }), cfg), false));
+  check('「党风政风监督热线」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '党风政风监督热线' }), cfg), false));
+  check('「慢直播│直播中国精编直播」→ 删',
+    () => assert.strictEqual(shouldKeep(item({ name: '慢直播│直播中国精编直播' }), cfg), false));
+  check('「慢直播」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '慢直播' }), cfg), false));
+  check('「会场直播」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '会场直播' }), cfg), false));
+  check('「路口直播」→ 删', () => assert.strictEqual(shouldKeep(item({ name: '路口直播' }), cfg), false));
+
+  // ★ 正常电视频道不能被误伤
+  check('★「胶州综合」→ 保留', () => assert.strictEqual(shouldKeep(item({ name: '胶州综合' }), cfg), true));
+  check('★「东营新闻综合」→ 保留', () => assert.strictEqual(shouldKeep(item({ name: '东营新闻综合' }), cfg), true));
+  check('★「黑龙江卫视」→ 保留', () => assert.strictEqual(shouldKeep(item({ name: '黑龙江卫视' }), cfg), true));
+}
+
 console.log('\n=== 5. 规则叠加与边界 ===');
 {
   const cfg = {

@@ -269,7 +269,7 @@ https://alivealone302.litenews.cn/285/202304_1651887528174882816/playlist.m3u8?k
 https://alivealone302.litenews.cn/421/73c76d35421345028653ea23a53db553/playlist.m3u8?k=0a885d8348f2818e4aebdcc0ea4f397e&t=1791253847
 #EXTINF:-1 tvg-logo="https://img11.litenews.cn/635/2023/06/16/10eb8ca7a9579564d19e8da968f5301e.png",潍坊新闻综合
 https://alivealone302.litenews.cn/635/695bc19784f6441e83c9eaee148e1f75/playlist.m3u8?k=916b4ccded2105e5821c606496d34f58&t=1791253930
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/635/2023/06/16/70b2c2cbfc6335a1f290d26993645f05.png",潍坊生活
+#EXTINF:-1 tvg-logo="https://img11.litenews.cn/635/2023/06/16/70b2c2cbfc6335a1f290d26993645f05.png",潍坊经济生活
 https://alivealone302.litenews.cn/635/1f97fc0633d747ed9689741218e0a057/playlist.m3u8?k=77926283d5ffe6c83a05f944550502c7&t=1791253930
 #EXTINF:-1 tvg-logo="https://img11.litenews.cn/635/2023/06/16/7dc04489203121086323a1002652354f.png",潍坊影视综艺
 https://alivealone302.litenews.cn/635/1ebcf529cada4d448a48f73b216cd1ac/playlist.m3u8?k=3791d1b4d729a29b39f6e2da3625a33e&t=1791253930
@@ -369,18 +369,12 @@ https://alivealone302.litenews.cn/689/29aa623852194d7a82c190ef8bf718be/playlist.
 https://alivealone302.litenews.cn/689/7718eae13d3a499e86e7df78a2834e88/playlist.m3u8?k=5f1fa8fbbc544e60a58ef6d9aa7ab524&t=1791253698
 #EXTINF:-1 tvg-logo="http://img11.iqilu.com/69/2019/10/07/f7efaee95d53ead5fbd2b81a3bf7b957.jpg",兰陵综合
 http://qkqxzb.qingk.cn/live/llsjtv01/index.m3u8?k=a0193bc77dd8638e&t=1570422466
-#EXTINF:-1 tvg-logo="https://img11.iqilu.com/81/2022/07/14/8810e34917e479444b2d214b4521bda2.png",新闻发布会
-https://wslivealone302.iqilu.com/yanggu/yanggu_tv03/playlist.m3u8?k=8377c16b00bd202914c79a86e4e9c4fa&t=1791253715
-#EXTINF:-1 tvg-logo="https://img11.iqilu.com/115/2020/04/17/e1074de915f68092198eaf851edd20e9.jpg",党风政风监督热线
-https://alivealone302.litenews.cn/115/202304_1651887501641715712/playlist.m3u8?k=a4c850de912f1ea345182955402b12e8&t=1791253728
 #EXTINF:-1 tvg-logo="https://img11.iqilu.com/115/2020/06/08/5454a2418cc2895f46f2a7bb22205dad.jpg",潍坊新闻综合
 https://alivealone302.litenews.cn/635/695bc19784f6441e83c9eaee148e1f75/playlist.m3u8?k=27cf07c8b0552ff8c209b5f3181c3403&t=1791253728
 #EXTINF:-1 tvg-logo="https://img11.iqilu.com/115/2020/06/08/5454a2418cc2895f46f2a7bb22205dad.jpg",潍坊经济生活
 https://alivealone302.litenews.cn/635/1f97fc0633d747ed9689741218e0a057/playlist.m3u8?k=d4f86bf7c45e67f17694e5c0a8aec709&t=1791253728
 #EXTINF:-1 tvg-logo="https://img11.iqilu.com/115/2020/06/08/5454a2418cc2895f46f2a7bb22205dad.jpg",潍坊影视综艺
 https://tftl0gc5nhcjigyzd1c3qgohn4amcpf5gkamcp7zgkc3ogezga4mwcizgk75u.100ycdn.com/alivealone302.litenews.cn/635/1ebcf529cada4d448a48f73b216cd1ac/playlist.m3u8?k=bab62eea5f15acaf2e9f34d19ed69acb&t=1771637338&wsSession=4dfb9f198874e4f647b23e4f-177163734158214&wsIPSercert=fc51e3f7d3828a194e17e4115c1ccade&wsiphost=local&wsBindIP=1
-#EXTINF:-1 tvg-logo="https://img11.iqilu.com/115/2022/08/03/ad9c773991972ec52e2bc64face91cda.png",慢直播│直播中国精编直播
-https://gctxyc.liveplay.myqcloud.com/gc/wgw05_1_md.m3u8
 #EXTINF:-1 tvg-logo="",山东卫视
 https://jsylivealone302.iqilu.com/nochain/sdtv/index.m3u8?t=1791257330&k=140b89d5bca78eb976c1b80581a1aa6a
 #EXTINF:-1 tvg-logo="",齐鲁频道
@@ -389,12 +383,6 @@ https://jsylivealone302.iqilu.com/nochain/qlpd/index.m3u8?t=1791257330&k=03d0747
 https://blivealone302.litenews.cn/b141/e5806b27ce0843ed8e9709cfd684fa7c/index.m3u8?t=1791257338&k=b87d364292910e9cda1c0009e90bee95
 #EXTINF:-1 tvg-logo="https://img11.litenews.cn/155/2025/07/19/1db97407e6df41848140de9a6ab4466e.jpg",经典剧场
 https://elivealone302.litenews.cn/155/EszhqMZyRAJd52GB3tjJbqjdMpAKe5Qm/playlist.m3u8?k=2f6b75b70dc289b39baba25f3e5911c4&t=1791253743
-#EXTINF:-1 tvg-logo="https://img11.iqilu.com/167/2022/03/23/1d056f4aceb0f103ac98367da68a7b2a.jpg",慢直播
-https://alivealone302.litenews.cn/167/b14c2b8d921f42adb3d9f6a11e802549/playlist.m3u8?k=9e2ae82941e4b07d6b66d5b197430555&t=1791253748
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/217/2023/10/26/a52c8e969ed1a83ce796fa3021fb2baa.jpg",会场直播
-https://alivealone302.litenews.cn/217/b1a9bc8b6fc64206a55b6ff095f9201c/playlist.m3u8?k=3f9ba8e1bbb5c805a49e52d4df3b3683&t=1791253767
-#EXTINF:-1 tvg-logo="https://alivealone302.litenews.cn/221/c7f05e98509a4ac786eba2340adfa7af/playlist.m3u8",路口直播
-https://alivealone302.litenews.cn/221/c7f05e98509a4ac786eba2340adfa7af/playlist.m3u8?k=c80c8e55ae7f30b7a859e5575b7f5724&t=1791253768
 #EXTINF:-1 tvg-logo="https://img11.iqilu.com/353/2022/03/16/c64c54f1bf565eabe2563b8c79ecd2b6.jpg",济铁频道
 https://jsylivealone302.iqilu.com/jitie/jitie_tv01/index.m3u8?t=1791257421&k=ef515b664a88d7415a36ed6d57fa03d0
 #EXTINF:-1 tvg-logo="",淄博高新频道
@@ -403,20 +391,6 @@ https://alivealone302.litenews.cn/401/8c7f569d59dc4ff9bef4deb47d6dbc05/playlist.
 https://alivealone302.litenews.cn/305/c663c037b5c345cdbe92a1e77e4c8710/playlist.m3u8?k=54812c58475395f2028aab7c64d9126b&t=1791253847
 #EXTINF:-1 tvg-logo="",新闻综合频道
 https://live.dongyingnews.cn/537/202304_1651887564182982656/playlist.m3u8?k=bfb017a87440f53f9a21dc1e48d17912&t=1791253939
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/061a85e9e8d4fbb2ff8793ced676bb75.jpg",甘肃卫视
-https://alivealone302.litenews.cn/29/32c4fc9cbd4d43ee9d84d8a6348571aa/playlist.m3u8?k=df1db7dae1af523713e15bb181e7fd19&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/d7273a1615bfe26cdded56f695036df3.jpg",经济频道
-https://alivealone302.litenews.cn/29/36a4de190ba54d32a6130e8d11cb3b35/playlist.m3u8?k=5fd62bd164c13264859d30357f0c3498&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/be91e00e4364b72a757bf28a9afb99d4.jpg",文化影视
-https://alivealone302.litenews.cn/29/cc5423b42ef94e3988cd1403a19b3d9f/playlist.m3u8?k=c102487fcb2b65f8ad085679c26e91b7&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/53ad735371457def0c750408bd8a198a.jpg",公共应急
-https://alivealone302.litenews.cn/29/4db7b8c1d69549e09bc76291e4168d4f/playlist.m3u8?k=72def04e8c2db1289808dac6bd9855cf&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/5540ba9d8a3759a70e8fbea90ff82279.jpg",都市频道
-https://alivealone302.litenews.cn/29/602a64d16212405db411b42b529445ed/playlist.m3u8?k=f0112195aa761509e9bf92ccaefc8173&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/a2eba81cd9b3d7cbdee28f41a12c5d7a.jpg",少儿频道
-https://alivealone302.litenews.cn/29/2f91e105d26c481f832b2224ddf1ace1/playlist.m3u8?k=92842587f89b8b2cf17f9b2cede4c610&t=1791253949
-#EXTINF:-1 tvg-logo="https://img11.litenews.cn/683/2024/10/24/4e73ac6d3b288d21b3d04b81db0a6c03.jpg",移动电视
-https://alivealone302.litenews.cn/29/78ee69ac3125446f9434cd96aa701874/playlist.m3u8?k=7f6462a75e62b45a62dfbb9adcf1e481&t=1791253949
 #EXTINF:-1 tvg-logo="https://img11.litenews.cn/686/2026/02/10/677cfcfa85b54a11afb1d63b68f25817.jpg",黑龙江卫视
 https://idclive.hljtv.com:4430/live/hljws_own.m3u8
 #EXTINF:-1 tvg-logo="",新闻综合频道
